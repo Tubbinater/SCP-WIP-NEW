@@ -4,7 +4,7 @@
 ## 🎮 Features
 - Selectable provinces
 - Toggleable map modes
-- Real-time 3D rendering
+- Map in 3D environment
 
 ## 🧪 In Development
 - Smooth borders with shader magic
