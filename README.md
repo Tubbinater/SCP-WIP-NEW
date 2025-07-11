@@ -8,3 +8,5 @@
 
 ## 🧪 In Development
 - Smooth borders with shader magic
+
+[YouTube Turorial Series](https://studio.youtube.com/playlist/PLz7HHPGLr7NLGJOin49X8VKNHoMHNfaKd/edit)
