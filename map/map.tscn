@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgerfy3y3klhk"]
+[gd_scene load_steps=10 format=3 uid="uid://cgerfy3y3klhk"]
 
 [ext_resource type="Shader" uid="uid://etl1fouj3y0j" path="res://map/shaders/map3d.gdshader" id="1_4hjbm"]
 [ext_resource type="Texture2D" uid="uid://d174hxgwn5ac2" path="res://map/map_data/TerrainMap.png" id="1_hgrid"]
 [ext_resource type="Script" uid="uid://cfim5uyhntmam" path="res://map/map.gd" id="1_lgq1i"]
+[ext_resource type="Texture2D" uid="uid://dtelfrbnn0q48" path="res://map/map_data/NormalMap.bmp" id="3_kffv2"]
 [ext_resource type="Material" uid="uid://b62uxcw6bw4d6" path="res://map/shaders/map2D.tres" id="3_lgq1i"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4hjbm"]
@@ -15,7 +16,12 @@ viewport_path = NodePath("MeshInstance3D/SubViewport")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_4hjbm")
+shader_parameter/terrain_image = ExtResource("1_hgrid")
 shader_parameter/subview_image = SubResource("ViewportTexture_4hjbm")
+shader_parameter/normalmap_image = ExtResource("3_kffv2")
+shader_parameter/threshold = 0.1
+shader_parameter/aa_scale = 17.6
+shader_parameter/base_line_thickness = 0.38197
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lgq1i"]
 size = Vector3(563.2, 1, 211.2)
