@@ -5,9 +5,7 @@
 - Selectable provinces
 - Toggleable map modes
 - Map in 3D environment
-
-## 🧪 In Development
-- Smooth borders with shader magic
+- Smooth borders
 
 ## YouTube 
 The creation is documented on the [YouTube Turorial Series](https://www.youtube.com/playlist?list=PLz7HHPGLr7NLGJOin49X8VKNHoMHNfaKd)
