@@ -10,4 +10,4 @@
 - Smooth borders with shader magic
 
 ## YouTube 
-The creation is documented on the [YouTube Turorial Series](https://studio.youtube.com/playlist/PLz7HHPGLr7NLGJOin49X8VKNHoMHNfaKd/edit)
+The creation is documented on the [YouTube Turorial Series](https://www.youtube.com/playlist?list=PLz7HHPGLr7NLGJOin49X8VKNHoMHNfaKd)
