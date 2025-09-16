@@ -28,6 +28,8 @@ bool diag(inout vec4 sum, vec2 ip, vec2 p1, vec2 p2, float thickness) {
 
 void fragment() {
 	// Textures
+	
+	vec3 subview_texture = texture(subview_image,UV).rgb;
 	vec3 terrain_texture = texture(terrain_image,UV).rgb;
 	vec3 normalmap_texture = texture(normalmap_image,UV).rgb;
 	
@@ -52,6 +54,6 @@ void fragment() {
 		diag(s, ip, vec2(1, -1), vec2(-1, 0), 0.25);
 	}
 	
-	ALBEDO = mix(s.rgb, terrain_texture, 0.4);
-	NORMAL_MAP = normalmap_texture;
+	ALBEDO = subview_texture;//mix(s.rgb, terrain_texture, 0.4);
+	//NORMAL_MAP = normalmap_texture;
 }

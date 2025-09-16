@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Grand Strategy Tutorial 3d"
+config/name="Open Grand Strategy"
+config/description="This open-source Grand Strategy game is built to emulate the style made popular by Paradox and similar games."
 run/main_scene="uid://b6hm5mv4x2n7f"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
