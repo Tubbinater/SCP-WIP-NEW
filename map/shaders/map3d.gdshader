@@ -54,6 +54,6 @@ void fragment() {
 		diag(s, ip, vec2(1, -1), vec2(-1, 0), 0.25);
 	}
 	
-	ALBEDO = subview_texture;//mix(s.rgb, terrain_texture, 0.4);
-	//NORMAL_MAP = normalmap_texture;
+	ALBEDO = s.rgb; //mix(s.rgb, terrain_texture, 0.4);
+	NORMAL_MAP = normalmap_texture;
 }

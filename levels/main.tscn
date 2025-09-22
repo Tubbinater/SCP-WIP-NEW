@@ -36,6 +36,10 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_wdj6m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 298.085, -50, 35.765)
+camera_move_speed = 50.0
+camera_zoom_speed = 316.0
+camera_zoom_min = 5.0
+camera_zoom_max = 150.0
 
 [node name="Countries" type="Node" parent="."]
 script = ExtResource("5_6et1j")
