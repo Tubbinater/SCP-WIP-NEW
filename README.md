@@ -6,6 +6,7 @@
 - Toggleable map modes
 - Map in 3D environment
 - Smooth borders
+- Dynamic country name labels
 
 ## YouTube 
 The creation is documented on the [YouTube Tutorial Series](https://www.youtube.com/playlist?list=PLz7HHPGLr7NLGJOin49X8VKNHoMHNfaKd)
