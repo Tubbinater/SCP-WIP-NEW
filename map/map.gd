@@ -16,6 +16,7 @@ func _ready() -> void:
 	create_lookup_texture()
 	create_color_map()
 	set_map_mode_political()
+	create_country_labels()
 	
 func create_lookup_texture() -> void:
 	var province_image : Image = get_parent().province_map.get_image()
@@ -97,3 +98,11 @@ func _on_map_modes_map_mode_selected(mode: Variant) -> void:
 			set_map_mode_political()
 		MapMode.IDEOLOGY:
 			set_map_mode_ideology()
+
+func create_country_labels() -> void:
+	var country_label_template: PackedScene = load("res://map/country_label_template.tscn")
+	for country: Country in Globals.tag_to_country.values():
+		var country_label = country_label_template.instantiate()
+		country_label.initial_data(country)
+		$MeshInstance3D/SubViewport2/CountryLabels.add_child(country_label)
+		country_label.update_data(country)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgerfy3y3klhk"]
+[gd_scene load_steps=11 format=3 uid="uid://cgerfy3y3klhk"]
 
 [ext_resource type="Shader" uid="uid://etl1fouj3y0j" path="res://map/shaders/map3d.gdshader" id="1_4hjbm"]
 [ext_resource type="Texture2D" uid="uid://d174hxgwn5ac2" path="res://map/map_data/TerrainMap.png" id="1_hgrid"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4hjbm"]
 size = Vector2(563.2, 211.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kffv2"]
+viewport_path = NodePath("MeshInstance3D/SubViewport2")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4hjbm"]
 viewport_path = NodePath("MeshInstance3D/SubViewport")
@@ -19,6 +22,7 @@ shader = ExtResource("1_4hjbm")
 shader_parameter/terrain_image = ExtResource("1_hgrid")
 shader_parameter/subview_image = SubResource("ViewportTexture_4hjbm")
 shader_parameter/normalmap_image = ExtResource("3_kffv2")
+shader_parameter/label_image = SubResource("ViewportTexture_kffv2")
 shader_parameter/threshold = 0.1
 shader_parameter/aa_scale = 17.6
 shader_parameter/base_line_thickness = 0.38197
@@ -35,12 +39,19 @@ mesh = SubResource("PlaneMesh_4hjbm")
 surface_material_override/0 = SubResource("ShaderMaterial_lgq1i")
 
 [node name="SubViewport" type="SubViewport" parent="MeshInstance3D"]
+canvas_cull_mask = 4294967293
 size = Vector2i(5632, 2112)
 
 [node name="Sprite2D" type="Sprite2D" parent="MeshInstance3D/SubViewport"]
 material = ExtResource("3_lgq1i")
 texture = ExtResource("1_hgrid")
 centered = false
+
+[node name="SubViewport2" type="SubViewport" parent="MeshInstance3D"]
+transparent_bg = true
+size = Vector2i(5632, 2112)
+
+[node name="CountryLabels" type="Node" parent="MeshInstance3D/SubViewport2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_lgq1i")

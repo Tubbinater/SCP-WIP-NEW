@@ -60,3 +60,21 @@ text = "State"
 
 [node name="LabelState" type="Label" parent="PanelContainer/GridContainer"]
 layout_mode = 2
+
+[node name="Label8" type="Label" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+text = "Position"
+
+[node name="LabelPosition" type="Label" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+
+[node name="ButtonSetPosition" type="Button" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+text = "Set Position"
+
+[node name="ButtonSave" type="Button" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+text = "Save"
+
+[connection signal="button_up" from="PanelContainer/GridContainer/ButtonSetPosition" to="." method="_on_button_set_position_button_up"]
+[connection signal="button_up" from="PanelContainer/GridContainer/ButtonSave" to="." method="_on_button_save_button_up"]

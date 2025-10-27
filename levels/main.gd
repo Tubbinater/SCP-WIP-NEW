@@ -7,6 +7,7 @@ func _on_player_province_selected(coordinates) -> void:
 	print(selected_province)
 	$ProvinceSelected.update_labels(selected_province)
 	$Map.highlight_province(selected_province)
+	$ProvinceSelected.set_position(selected_province, coordinates)
 	
 func _on_states_reparent_provinces(state) -> void:
 	for province in state.provinces:

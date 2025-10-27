@@ -58,4 +58,5 @@ script = ExtResource("6_qy63d")
 
 [connection signal="province_selected" from="Player" to="." method="_on_player_province_selected"]
 [connection signal="reparent_provinces" from="States" to="." method="_on_states_reparent_provinces"]
+[connection signal="save_provinces" from="ProvinceSelected" to="Provinces" method="_on_province_selected_save_provinces"]
 [connection signal="map_mode_selected" from="MapModes" to="Map" method="_on_map_modes_map_mode_selected"]
