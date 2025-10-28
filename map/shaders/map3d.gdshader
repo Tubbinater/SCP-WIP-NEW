@@ -4,8 +4,6 @@ shader_type spatial;
 uniform sampler2D terrain_image: source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D subview_image: source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D normalmap_image: hint_normal, repeat_enable;
-uniform sampler2D label_image: source_color, filter_linear_mipmap, repeat_enable;
-
 
 // Parameters
 uniform float threshold = 0.1;
@@ -30,12 +28,11 @@ bool diag(inout vec4 sum, vec2 ip, vec2 p1, vec2 p2, float thickness) {
 
 void fragment() {
 	// Textures
-	
+
 	vec3 subview_texture = texture(subview_image,UV).rgb;
 	vec3 terrain_texture = texture(terrain_image,UV).rgb;
 	vec3 normalmap_texture = texture(normalmap_image,UV).rgb;
-	vec4 label_texture = texture(label_image,UV);
-	
+
 	// Apply smoothing
 	vec2 tex_size = vec2(textureSize(subview_image, 0));
 	vec2 ip = UV * tex_size;
@@ -56,9 +53,8 @@ void fragment() {
 		diag(s, ip, vec2(0, -1), vec2(-1, 1), 0.25);
 		diag(s, ip, vec2(1, -1), vec2(-1, 0), 0.25);
 	}
-	
-	vec3 final_color = mix(s.rgb, label_texture.rgb, label_texture.a);
 
-	ALBEDO = final_color;//s.rgb; //mix(s.rgb, terrain_texture, 0.4);
+
+	ALBEDO = s.rgb; //final_color;//s.rgb; //mix(s.rgb, terrain_texture, 0.4);
 	NORMAL_MAP = normalmap_texture;
 }
