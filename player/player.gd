@@ -8,6 +8,10 @@ signal province_selected
 
 #Camera move
 @export_range(0,1000,1) var camera_move_speed:float = 500.0
+#adjust position speed based on zoom distance
+@onready var camera_move_speed_adjusted_w_zoom:float = camera_move_speed + camera.position.z
+#change speed based on player shift input (change in function, not here)
+var camera_shift_speed:int = 1
 
 #Camera rotate
 var camera_rotation_direction:float = 0
@@ -25,7 +29,7 @@ var camera_zoom_direction:float = 0
 @export_range(0,1000,1) var camera_zoom_speed:float = 1000.0
 @export_range(0,100,1) var camera_zoom_min:float = 40.0
 @export_range(0,1000,1) var camera_zoom_max:float = 1000.0
-@export_range(0,2,1) var camera_zoom_speed_damp:float = 0.92
+@export_range(0,2,.1) var camera_zoom_speed_damp:float = 0.92
 
 #flags
 var camera_can_process:bool = true
@@ -65,7 +69,13 @@ func camera_base_move(delta:float) -> void:
 	if Input.is_action_pressed("camera_right"): velocity_direction += transform.basis.x
 	if Input.is_action_pressed("camera_left"): velocity_direction -= transform.basis.x
 	
-	position += velocity_direction.normalized() * camera_move_speed  * delta
+	if Input.is_action_pressed("shift_click"): camera_shift_speed = 2
+	else: camera_shift_speed = 1
+	
+	#adjust camera speed based on zoom distance and shift input
+	camera_move_speed_adjusted_w_zoom = (camera_move_speed + camera.position.z) * camera_shift_speed
+	
+	position += velocity_direction.normalized() * camera_move_speed_adjusted_w_zoom  * delta
 
 
 func _unhandled_input(event: InputEvent) -> void:
