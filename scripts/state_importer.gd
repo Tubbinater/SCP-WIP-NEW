@@ -47,7 +47,7 @@ func generate_states() -> void:
 	#set_state_controller -> triggers in province template - sets specified province tag as controller
 func assign_owners() -> void: # get_node(State ID) set_state_owner(country_id ##found in country_importer) 
 	get_node("925").set_state_owner("FRA")
-	get_node("925").set_state_controller("FRA")
+	get_node("925").set_state_controller("FRA") # you can't really do this method in actual game, where saves and load game is implemented. you have to input the owner within the state.txt
 	get_node("931").set_state_owner("FRA")
 	get_node("931").set_state_controller("FRA")
 	get_node("936").set_state_owner("FRA")

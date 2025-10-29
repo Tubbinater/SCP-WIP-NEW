@@ -87,9 +87,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	#Camera Zoom
 	if event.is_action("camera_zoom_in"):
-		camera_zoom_direction = -1
-	elif  event.is_action("camera_zoom_out"):
 		camera_zoom_direction = 1
+	elif  event.is_action("camera_zoom_out"):
+		camera_zoom_direction = -1
 	
 	#Camera rotations
 	if event.is_action_pressed("camera_rotate_right"):
@@ -112,9 +112,30 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func camera_zoom_update(delta:float) -> void:
+	#if !camera_can_zoom: return
+	
+	#var zoom_factor = camera_zoom_speed * camera_zoom_direction * delta
+	#var mouse_pos = get_viewport().get_mouse_position()
+	#var ray_origin = camera.project_ray_origin(mouse_pos)
+	#var ray_dir = camera.project_ray_normal(mouse_pos)
+	#var space = get_world_3d().direct_space_state
+	#var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_dir * 2000)
+	#var result = space.intersect_ray(ray_query)
+	
+	#if result:
+		#var target_point = result.position
+		#var cam_to_target = (target_point - camera.global_position).normalized()
+		#camera.global_position += cam_to_target * zoom_factor
+	#else:
+		#camera.global_position += ray_dir * zoom_factor
+	
+	#camera.position.z = clamp(camera.position.z, camera_zoom_min, camera_zoom_max)
+	#camera_zoom_direction *= camera_zoom_speed_damp
+
 	if !camera_can_zoom:return
 	
-	var new_zoom:float = clamp(camera.position.z + camera_zoom_speed * camera_zoom_direction * delta, camera_zoom_min, camera_zoom_max)
+	var new_zoom:float = clamp(camera.position.z + camera_zoom_speed * -(camera_zoom_direction) * delta, camera_zoom_min, camera_zoom_max)
+	
 	camera.position.z = new_zoom
 	camera_zoom_direction *= camera_zoom_speed_damp
 

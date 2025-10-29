@@ -31,7 +31,7 @@ func _on_button_set_position_button_up() -> void:
 	
 func set_position(province: Province, coordinates):
 	if is_setting_province_position:
-		province.position = Vector2(coordinates.x*10, coordinates.y*10)
+		province.position = Vector2(coordinates.x*10, coordinates.y*10) # x10 due to ratio of img to 3d mesh
 		is_setting_province_position = false
 		update_labels(province)
 
