@@ -13,7 +13,7 @@ func generate_provinces() -> void:
 	for row in rows:
 		if row.strip_edges() != "":
 			var columns:Array = row.split(",")
-			var province_id:int = int(columns[0])
+			var province_id:int = int(columns[0]) # id, r,g,b, "type", x, y
 			var province_color:Color = Color(float(columns[1])/255,float(columns[2])/255,float(columns[3])/255)
 			var province_type:String = columns[4]
 			var province_position: Vector2 = Vector2(float(columns[5]),float(columns[6]))
@@ -33,7 +33,7 @@ func generate_provinces() -> void:
 			color_to_province[province_color] = province
 			
 			
-func save_provinces_to_file() -> void:
+func save_provinces_to_file() -> void: #(editor tool to update provinces)
 	var province_file = FileAccess.open("res://map/map_data/Provinces.txt", FileAccess.WRITE)
 	for province in color_to_province.values():
 		var color = province.color

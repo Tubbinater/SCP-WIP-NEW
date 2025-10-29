@@ -66,31 +66,54 @@ func update_color_map(input_color:Color, output_color:Color, offset:int) -> void
 	
 func update_map_shader() -> void: #colors of entire map is updated to reflect what player wants to filter through
 	color_map_texture = ImageTexture.create_from_image(current_map_mode)
-	map_material_2d.set_shader_parameter("color_map_image",color_map_texture)
+	map_material_2d.set_shader_parameter("color_map_image",color_map_texture) #changes shader to updated version
 
 func set_map_mode_political() -> void: #updates map shader for colors
 	current_map_mode = color_map_political
+	if memory_selected: #if there is memory (if not, skip)
+		highlight_province(memory_selected) #re-highlights, to make it align with map view when switched
 	update_map_shader()
-	
+
 func set_map_mode_ideology() -> void: # updates map shaders for colors
 	current_map_mode = color_map_ideology
+	if memory_selected:
+		highlight_province(memory_selected)
 	update_map_shader()
-	
+
+
+# Brightens a color by increasing its RGB values proportionally
+func brighten_color(color: Color, divider: float = 4) -> Color:
+	var r = min(color.r + ((1 - color.r)/divider), 1.0)
+	var g = min(color.g + ((1 - color.g)/divider), 1.0)
+	var b = min(color.b + ((1 - color.b)/divider), 1.0)
+	return Color(r, g, b, color.a)
+
+var memory_selected # store what is selected when changing map view
+
 func highlight_province(selected_province) -> void:
 	deselect_provinces()
 	if selected_province.type == "land":
+		memory_selected = selected_province #stores memory
 		for province in selected_province.get_parent().get_children():
-			var highlighted_color_state : Color = Color(province.province_controller.color.r,province.province_controller.color.g,province.province_controller.color.b,.9)
-			update_color_map(province.color, highlighted_color_state, 200) # sets state color when clicking children province
-			previously_selected_provinces.append(province.color)
+			var lookup = province_color_to_lookup.get(province.color, null)
+			if lookup:
+				var x = lookup.r * 255
+				var y = lookup.g * 255
+				var base_color = current_map_mode.get_pixel(x, y + 100)
+				var brightened = brighten_color(base_color)
+				update_color_map(province.color, brightened, 200) # sets state color when clicking children province
+				previously_selected_provinces.append(province.color)
 			
-	var highlighted_color_province : Color = Color(selected_province.color.r,selected_province.color.g,selected_province.color.b,.95)
-	update_color_map(selected_province.color, highlighted_color_province, 200) # sets province color when clicked
-	update_map_shader()
-	previously_selected_provinces.append(selected_province.color)
-	# Color(0.0, 0.0, 0.0, 0.847)
-
-
+	var lookup_p = province_color_to_lookup.get(selected_province.color, null)
+	if lookup_p:
+		var x_p = lookup_p.r * 255
+		var y_p = lookup_p.g * 255
+		var base_color_p = current_map_mode.get_pixel(x_p, y_p + 100)
+		var brightened_p = brighten_color(base_color_p, 2)
+	
+		update_color_map(selected_province.color, brightened_p, 200) # sets province color when clicked
+		update_map_shader()
+		previously_selected_provinces.append(selected_province.color)
 
 func deselect_provinces() -> void: #sets color to black when deselects (fires before highlighting again) ***make sure to add esc function to deselect too***
 	for color in previously_selected_provinces:
