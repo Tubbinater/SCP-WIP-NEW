@@ -1,5 +1,6 @@
 extends Node
 
+# create country (tag, name, color, ideology)
 func _ready() -> void:
 	create_countries("NNN","No Name",Color("TRANSPARENT"),"Communist")
 	create_countries("FRA","France",Color("BLUE"),"Democratic")
@@ -24,7 +25,7 @@ func _ready() -> void:
 	create_countries("SER","Serbia",Color("3c39a8ff"),"Democratic")
 	create_countries("IRL","Ireland",Color("1e9028ff"),"Democratic")
 	
-func create_countries(tag, country_name, color, ideology):
+func create_countries(tag, country_name, color, ideology): #creates node under Countries. then sets its global dictionary
 	var country:Country = Country.new()
 	country.tag = tag
 	country.name = tag

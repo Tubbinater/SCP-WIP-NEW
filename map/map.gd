@@ -53,6 +53,7 @@ func create_color_map() -> void:
 			color_map_ideology.set_pixel(x,y,owner_ideology_color)
 			color_map_ideology.set_pixel(x,y+100,controller_ideology_color)
 
+# updates color of province and state selected
 func update_color_map(input_color:Color, output_color:Color, offset:int) -> void:
 	var lookup = province_color_to_lookup.get(input_color,null)
 	if lookup:
@@ -63,15 +64,15 @@ func update_color_map(input_color:Color, output_color:Color, offset:int) -> void
 		current_map_mode.set_pixel(x,y+offset,output_color)
 	
 	
-func update_map_shader() -> void:
+func update_map_shader() -> void: #colors of entire map is updated to reflect what player wants to filter through
 	color_map_texture = ImageTexture.create_from_image(current_map_mode)
 	map_material_2d.set_shader_parameter("color_map_image",color_map_texture)
 
-func set_map_mode_political() -> void:
+func set_map_mode_political() -> void: #updates map shader for colors
 	current_map_mode = color_map_political
 	update_map_shader()
 	
-func set_map_mode_ideology() -> void:
+func set_map_mode_ideology() -> void: # updates map shaders for colors
 	current_map_mode = color_map_ideology
 	update_map_shader()
 	
@@ -79,14 +80,19 @@ func highlight_province(selected_province) -> void:
 	deselect_provinces()
 	if selected_province.type == "land":
 		for province in selected_province.get_parent().get_children():
-			update_color_map(province.color, Color("WHITE"), 200)
+			var highlighted_color_state : Color = Color(province.province_controller.color.r,province.province_controller.color.g,province.province_controller.color.b,.9)
+			update_color_map(province.color, highlighted_color_state, 200) # sets state color when clicking children province
 			previously_selected_provinces.append(province.color)
 			
-	update_color_map(selected_province.color, Color("Green"), 200)
+	var highlighted_color_province : Color = Color(selected_province.color.r,selected_province.color.g,selected_province.color.b,.95)
+	update_color_map(selected_province.color, highlighted_color_province, 200) # sets province color when clicked
 	update_map_shader()
 	previously_selected_provinces.append(selected_province.color)
-	
-func deselect_provinces() -> void:
+	# Color(0.0, 0.0, 0.0, 0.847)
+
+
+
+func deselect_provinces() -> void: #sets color to black when deselects (fires before highlighting again) ***make sure to add esc function to deselect too***
 	for color in previously_selected_provinces:
 		update_color_map(color, Color("BLACK"), 200)
 	previously_selected_provinces.clear()

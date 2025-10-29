@@ -9,7 +9,7 @@ func _on_player_province_selected(coordinates) -> void:
 	$Map.highlight_province(selected_province)
 	$ProvinceSelected.set_position(selected_province, coordinates)
 	
-func _on_states_reparent_provinces(state) -> void:
+func _on_states_reparent_provinces(state) -> void: #move state node to province stated in state-file
 	for province in state.provinces:
 		var node_to_move = $Provinces.get_node(province)
 		node_to_move.reparent(state)

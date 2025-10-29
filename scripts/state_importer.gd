@@ -8,10 +8,10 @@ func  _ready() -> void:
 	
 func generate_states() -> void:
 	print("STARTING TO GENERATE STATES")
-	var state_folder = DirAccess.open("res://map/map_data/States/")
+	var state_folder = DirAccess.open("res://map/map_data/States/") # Grab states from folder "States"
 	state_folder.list_dir_begin()
-	var file_name = state_folder.get_next()
-	while file_name != "":
+	var file_name = state_folder.get_next() 
+	while file_name != "": # this whole section is just to grab the state id, name, province number
 		var state_file = FileAccess.open("res://map/map_data/States/" + file_name,FileAccess.READ)
 		var file_content = state_file.get_as_text().strip_edges()
 		state_file.close()
@@ -35,15 +35,17 @@ func generate_states() -> void:
 		state.state_name = state_name
 		state.provinces = provinces
 		add_child(state)
-		reparent_provinces.emit(state)
+		reparent_provinces.emit(state) #signal to main script, move node to Province number (in state file)
 		
 		#
 		file_name = state_folder.get_next()
 	state_folder.list_dir_end()
 	print("Finished generating states!")
 
-
-func assign_owners() -> void:
+# manually assign owners -> puts states under assigned province under assigned country
+	#set_state_owner -> triggers in state, province, then country template - moves node under specified country and province
+	#set_state_controller -> triggers in province template - sets specified province tag as controller
+func assign_owners() -> void: # get_node(State ID) set_state_owner(country_id ##found in country_importer) 
 	get_node("925").set_state_owner("FRA")
 	get_node("925").set_state_controller("FRA")
 	get_node("931").set_state_owner("FRA")

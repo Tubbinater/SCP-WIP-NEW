@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Open Grand Strategy"
+config/name="Open Grand Strategy - PCS"
 config/description="This open-source Grand Strategy game is built to emulate the style made popular by Paradox and similar games."
 run/main_scene="uid://b6hm5mv4x2n7f"
 config/features=PackedStringArray("4.5", "Forward Plus")
@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://scripts/globals.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [file_customization]
 
