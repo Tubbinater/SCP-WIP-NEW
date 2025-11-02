@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6hm5mv4x2n7f"]
+[gd_scene load_steps=14 format=3 uid="uid://b6hm5mv4x2n7f"]
 
 [ext_resource type="PackedScene" uid="uid://cgerfy3y3klhk" path="res://map/map.tscn" id="1_2262g"]
 [ext_resource type="Script" uid="uid://5td4ffqk5up" path="res://levels/main.gd" id="1_l8qe7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c4vggacrty230" path="res://scripts/province_importer.gd" id="5_ifaiv"]
 [ext_resource type="PackedScene" uid="uid://5arm34pep1aj" path="res://ui/province_selected.tscn" id="6_5k4jt"]
 [ext_resource type="Script" uid="uid://cop0wv5f1ngy0" path="res://scripts/state_importer.gd" id="6_qy63d"]
+[ext_resource type="Script" uid="uid://2ex5m8v5kxf1" path="res://scripts/scps_importer.gd" id="7_jw1n3"]
 [ext_resource type="PackedScene" uid="uid://cdy1220h7wcq3" path="res://ui/map_modes.tscn" id="9_etqu2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wdj6m"]
@@ -50,6 +51,9 @@ script = ExtResource("5_ifaiv")
 
 [node name="States" type="Node" parent="."]
 script = ExtResource("6_qy63d")
+
+[node name="SCPs" type="Node" parent="."]
+script = ExtResource("7_jw1n3")
 
 [node name="Map" parent="." instance=ExtResource("1_2262g")]
 

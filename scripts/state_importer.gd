@@ -9,12 +9,12 @@ func  _ready() -> void:
 func generate_states() -> void:
 	print("STARTING TO GENERATE STATES")
 	var state_folder = DirAccess.open("res://map/map_data/States/") # Grab states from folder "States"
-	state_folder.list_dir_begin()
-	var file_name = state_folder.get_next() 
+	state_folder.list_dir_begin() #open folder
+	var file_name = state_folder.get_next() #grabs first file in folder
 	while file_name != "": # this whole section is just to grab the state id, name, province number
-		var state_file = FileAccess.open("res://map/map_data/States/" + file_name,FileAccess.READ)
-		var file_content = state_file.get_as_text().strip_edges()
-		state_file.close()
+		var state_file = FileAccess.open("res://map/map_data/States/" + file_name,FileAccess.READ) #open file
+		var file_content = state_file.get_as_text().strip_edges() #read, grab and input file into var
+		state_file.close() #close the file
 		#id
 		var from = file_content.find("id=")+3
 		var to = file_content.find("name=")-from
@@ -38,8 +38,8 @@ func generate_states() -> void:
 		reparent_provinces.emit(state) #signal to main script, move node to Province number (in state file)
 		
 		#
-		file_name = state_folder.get_next()
-	state_folder.list_dir_end()
+		file_name = state_folder.get_next() #move to next file in folder
+	state_folder.list_dir_end() #closes folder
 	print("Finished generating states!")
 
 # manually assign owners -> puts states under assigned province under assigned country
