@@ -1,5 +1,5 @@
 extends Node
-class_name Data
+class_name Data #makes it global
 
 var SCP := {} #dictionary of SCPs
 
@@ -19,7 +19,7 @@ func save_json(path: String, data: Dictionary): #saves in dictioanry format
 
 
 # loads all scps from folder into game
-func load_all_scps(folder_path: String = "res://map/map_data/SCPs/"):
+func load_all_scps(folder_path: String = "res://C_Template_Data/SCPs/"):
 	var folder1 := DirAccess.open(folder_path)
 	if folder1:
 		for file_name in folder1.get_files():

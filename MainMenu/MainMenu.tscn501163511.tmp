@@ -1,0 +1,431 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkamnaxnktaqa"]
+
+[ext_resource type="Texture2D" uid="uid://de6vwa8ab1u72" path="res://C_Template_Data/images/SCP main menu SD.jpg" id="1_2dq7f"]
+[ext_resource type="FontFile" uid="uid://q13qhihmpv5c" path="res://C_Template_Data/Fonts/IMPACT.TTF" id="1_e8mju"]
+[ext_resource type="Script" uid="uid://c8jr7o44aujo0" path="res://MainMenu/main_menu.gd" id="1_gns1a"]
+[ext_resource type="Script" uid="uid://f4qmm5tocals" path="res://MainMenu/options_containerMainMenu.gd" id="4_m5rkr"]
+[ext_resource type="Script" uid="uid://camy8ol3oe1f8" path="res://MainMenu/LoadGameLogic.gd" id="4_qo8h6"]
+[ext_resource type="Theme" uid="uid://cl8r3js8j0kbo" path="res://MainMenu/textures/loadbuttons.tres" id="6_mcmq6"]
+[ext_resource type="Theme" uid="uid://ybqxwchuluvk" path="res://MainMenu/textures/MainMenu_theme.tres" id="6_sus4c"]
+[ext_resource type="Script" uid="uid://iykssgh445cj" path="res://MainMenu/LoadGameDeleteLogic.gd" id="7_lvovt"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("options", "LoadGameBox", "CreditBox", "credits_label", "gamebuttonbox")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gns1a")
+options = NodePath("OptionsContainer")
+LoadGameBox = NodePath("LoadGameBOX")
+CreditBox = NodePath("CreditsContainer")
+credits_label = NodePath("CreditsContainer/MarginContainer/VBoxContainer/VBoxContainer/CreditsLabel")
+gamebuttonbox = NodePath("LoadGameBOX/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/LoadGameList")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2dq7f")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -218.0
+offset_top = 55.0
+offset_right = 218.0
+offset_bottom = 134.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.158472, 0.158472, 0.158472, 1)
+theme_override_constants/shadow_offset_x = -12
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/outline_size = 24
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("1_e8mju")
+theme_override_font_sizes/font_size = 64
+text = "SCP Foundations"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsContainer" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -174.0
+offset_right = 470.0
+offset_bottom = 276.0
+grow_vertical = 2
+script = ExtResource("4_m5rkr")
+
+[node name="Panel" type="Panel" parent="OptionsContainer"]
+layout_mode = 2
+theme = ExtResource("6_sus4c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+
+[node name="OptionsLabel" type="Label" parent="OptionsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_e8mju")
+theme_override_font_sizes/font_size = 30
+text = "Options"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="OptionsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(425, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("6_sus4c")
+tab_alignment = 1
+current_tab = 0
+
+[node name="Graphics" type="TabBar" parent="OptionsContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="OptionsContainer/VBoxContainer/TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer/VBoxContainer/TabContainer/Graphics/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Display" type="Label" parent="OptionsContainer/VBoxContainer/TabContainer/Graphics/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Display"
+
+[node name="Fullscreen" type="OptionButton" parent="OptionsContainer/VBoxContainer/TabContainer/Graphics/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="Resolution" type="Label" parent="OptionsContainer/VBoxContainer/TabContainer/Graphics/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="ResolutionSelect" type="OptionButton" parent="OptionsContainer/VBoxContainer/TabContainer/Graphics/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+selected = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[node name="Sound" type="TabBar" parent="OptionsContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/VBoxContainer/TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="MuteCheckBox" type="CheckBox" parent="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Mute The Game"
+text = "Mute"
+
+[node name="General" type="Label" parent="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The General Volume includes all aspects of the game"
+mouse_filter = 1
+text = "General Volume"
+
+[node name="GeneralVolume" type="HSlider" parent="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -20.0
+max_value = 20.0
+
+[node name="Music" type="Label" parent="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The Music Volume includes only the music that plays throughout the game and main menu"
+mouse_filter = 1
+text = "Music Volume"
+
+[node name="MusicVolume" type="HSlider" parent="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -20.0
+max_value = 20.0
+
+[node name="CreditsContainer" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 550)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -210.0
+offset_bottom = 340.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("6_sus4c")
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Panel" type="Panel" parent="CreditsContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CreditsTitleLabel" type="Label" parent="CreditsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_e8mju")
+theme_override_font_sizes/font_size = 25
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CreditsLabel" type="RichTextLabel" parent="CreditsContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "test
+iofhjnodn
+diofjkdsfmn
+iopdfjdkslfjm
+sdkfldk'fjm
+dskmfjkldsfmj
+df
+d
+d
+d
+d
+d
+d
+
+fg
+dfg
+fdg
+f
+dg
+fdg
+fd
+g
+fdg
+fd
+g
+fd
+g
+dfg
+fd
+g
+fd
+g
+fg
+
+fdg
+fd
+g
+df
+g
+df
+g
+fd
+g
+dfg
+re
+gf
+d
+g
+re
+"
+
+[node name="LoadGameBOX" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(250, 400)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -505.0
+offset_top = -149.0
+offset_right = -153.0
+offset_bottom = 251.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("6_sus4c")
+
+[node name="Panel" type="Panel" parent="LoadGameBOX"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LoadGameBOX"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadGameBOX/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LoadGameBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_e8mju")
+theme_override_font_sizes/font_size = 25
+text = "Load Save"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LoadGameBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_mcmq6")
+theme_override_constants/separation = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LoadGameBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LoadGameList" type="VBoxContainer" parent="LoadGameBOX/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_qo8h6")
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="LoadGameBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LoadDeleteList" type="VBoxContainer" parent="LoadGameBOX/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer2" node_paths=PackedStringArray("loadgamelist")]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("7_lvovt")
+loadgamelist = NodePath("../../ScrollContainer/LoadGameList")
+
+[node name="MainButtonsContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainButtonsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="NewGameButton" type="Button" parent="MainButtonsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme = ExtResource("6_sus4c")
+theme_override_font_sizes/font_size = 18
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="MainButtonsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme = ExtResource("6_sus4c")
+theme_override_font_sizes/font_size = 18
+text = "Load Game"
+
+[node name="OptionsButton" type="Button" parent="MainButtonsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme = ExtResource("6_sus4c")
+theme_override_font_sizes/font_size = 18
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="MainButtonsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme = ExtResource("6_sus4c")
+theme_override_font_sizes/font_size = 18
+text = "Credits"
+
+[node name="ExitGameButton" type="Button" parent="MainButtonsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme = ExtResource("6_sus4c")
+theme_override_font_sizes/font_size = 18
+text = "Exit Game"
+
+[connection signal="item_selected" from="OptionsContainer/VBoxContainer/TabContainer/Graphics/MarginContainer2/VBoxContainer/Fullscreen" to="OptionsContainer" method="_on_fullscreen_item_selected"]
+[connection signal="item_selected" from="OptionsContainer/VBoxContainer/TabContainer/Graphics/MarginContainer2/VBoxContainer/ResolutionSelect" to="OptionsContainer" method="_on_resolution_select_item_selected"]
+[connection signal="toggled" from="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MuteCheckBox" to="OptionsContainer" method="_on_mute_check_box_toggled"]
+[connection signal="value_changed" from="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/GeneralVolume" to="OptionsContainer" method="_on_general_volume_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MusicVolume" to="OptionsContainer" method="_on_music_volume_value_changed"]
+[connection signal="pressed" from="MainButtonsContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MainButtonsContainer/VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="MainButtonsContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainButtonsContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MainButtonsContainer/VBoxContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
