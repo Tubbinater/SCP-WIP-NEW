@@ -8,7 +8,7 @@ func  _ready() -> void:
 func generate_provinces() -> void:
 	print("STARTING TO GENERATE PROVINCES")
 	
-	var province_file:String = FileAccess.open("res://map/map_data/Provinces.txt", FileAccess.READ).get_as_text()
+	var province_file:String = FileAccess.open("user://SCP_Foundations_current_game_data/map_data/Provinces.txt", FileAccess.READ).get_as_text()
 	var rows:Array = province_file.split("\n")
 	for row in rows:
 		if row.strip_edges() != "":

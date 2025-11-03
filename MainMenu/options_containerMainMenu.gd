@@ -12,7 +12,6 @@ func load_options(path: String) -> Dictionary: #load single JSON file, returns i
 	return {}
 	
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
 	menu_options = load_options("res://C_Persistent_Data/Options.json")

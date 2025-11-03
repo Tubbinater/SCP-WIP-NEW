@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	refresh_list()
 
@@ -23,6 +23,7 @@ func refresh_list(): #creates a list of buttons per save file
 				#Create a button for the save file
 				var button = Button.new()
 				button.text = file_name  # Set the button text to the file name
+				@warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")
 				button.set_focus_mode(0)
 				# store the full path in metadata for easy access (can delete if not worth it)
 				button.set_meta("file_path", file_name)

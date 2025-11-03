@@ -2,7 +2,7 @@ extends Node
 
 # create country (tag, name, color, ideology)
 func _ready() -> void:
-	create_countries("NNN","No Name",Color("TRANSPARENT"),"Communist")
+	create_countries("NNN","No Name",Color("5f5f5f00"),"Communist")
 	create_countries("FRA","France",Color("BLUE"),"Democratic")
 	create_countries("DEU","Germany",Color("BLACK"),"Democratic")
 	create_countries("ITA","Italy",Color("WEB_GREEN"),"Democratic")

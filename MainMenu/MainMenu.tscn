@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bkamnaxnktaqa"]
 
-[ext_resource type="Texture2D" uid="uid://de6vwa8ab1u72" path="res://C_Template_Data/images/SCP main menu SD.jpg" id="1_2dq7f"]
-[ext_resource type="FontFile" uid="uid://q13qhihmpv5c" path="res://C_Template_Data/Fonts/IMPACT.TTF" id="1_e8mju"]
+[ext_resource type="Texture2D" uid="uid://de6vwa8ab1u72" path="res://images/SCP main menu SD.jpg" id="1_2dq7f"]
+[ext_resource type="FontFile" uid="uid://q13qhihmpv5c" path="res://Fonts/IMPACT.TTF" id="1_e8mju"]
 [ext_resource type="Script" uid="uid://c8jr7o44aujo0" path="res://MainMenu/main_menu.gd" id="1_gns1a"]
 [ext_resource type="Script" uid="uid://f4qmm5tocals" path="res://MainMenu/options_containerMainMenu.gd" id="4_m5rkr"]
 [ext_resource type="Script" uid="uid://camy8ol3oe1f8" path="res://MainMenu/LoadGameLogic.gd" id="4_qo8h6"]

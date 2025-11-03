@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://scripts/globals.gd"
+DataManager="*res://scripts/DataManager.gd"
 
 [display]
 

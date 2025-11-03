@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g3wwmgbpk50k"
-path="res://.godot/imported/sheet_white1x.png-593acfba9dec4171357be8f420ffcd29.ctex"
+uid="uid://de6vwa8ab1u72"
+path="res://.godot/imported/SCP main menu SD.jpg-f91f9628453e2fb93253791878388ba4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://C_Template_Data/images/sheet_white1x.png"
-dest_files=["res://.godot/imported/sheet_white1x.png-593acfba9dec4171357be8f420ffcd29.ctex"]
+source_file="res://images/SCP main menu SD.jpg"
+dest_files=["res://.godot/imported/SCP main menu SD.jpg-f91f9628453e2fb93253791878388ba4.ctex"]
 
 [params]
 
