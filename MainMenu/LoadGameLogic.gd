@@ -5,7 +5,10 @@ extends VBoxContainer
 func _ready() -> void:
 	refresh_list()
 
-const SAVE_FOLDER = "res://C_Persistent_Data/save_folder/"
+const SAVE_FOLDER = DataManager.save_folder
+
+
+
 
 func refresh_list(): #creates a list of buttons per save file
 	for button in get_children(): #deletes list before making new one
@@ -17,7 +20,7 @@ func refresh_list(): #creates a list of buttons per save file
 		var file_name = path.get_next()
 		
 		while file_name != "":
-			if not path.current_is_dir(): #filters out folders and only leaves files
+			if path.current_is_dir(): #filters only folders and only leaves everything else out
 				print("Found file: " + file_name)
 				
 				#Create a button for the save file
@@ -37,15 +40,16 @@ func refresh_list(): #creates a list of buttons per save file
 			file_name = path.get_next()
 		path.list_dir_end()
 	else:
-		print("An error occurred when trying to access the path.")
+		print("An error occurred when trying to access the path: %s." % SAVE_FOLDER)
+	
 
 # Signal handler for when a save button is pressed
 func _on_load_save_button_pressed(button: Button) -> void:
 	# Retrieve the file path from the button's metadata
 	var file_path = button.get_meta("file_path").split(".", true, 1)
-	print("Save file selected:", file_path[0])
+	print("Save file selected: ", file_path[0])
 	
-	# load the selected save file and run game
-	# add file functions here
+	#load the selected save file and run game
+	DataManager.copy_folder(DataManager.save_folder + file_path[0] , DataManager.current_game_folder)
 	
 	get_tree().change_scene_to_file("res://levels/main.tscn")

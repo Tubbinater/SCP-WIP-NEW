@@ -6,7 +6,7 @@ extends VBoxContainer
 func _ready() -> void:
 	refresh_list()
 
-const SAVE_FOLDER = "res://C_Persistent_Data/save_folder/"
+const SAVE_FOLDER = DataManager.save_folder
 
 func refresh_list(): #creates a list of buttons per save file
 	for button in get_children(): #deletes list before making new one
@@ -18,10 +18,10 @@ func refresh_list(): #creates a list of buttons per save file
 		var file_name = path.get_next()
 		
 		while file_name != "":
-			if not path.current_is_dir(): #filters out folders and only leaves files
+			if path.current_is_dir(): #filters out all but folders
 				print("Found file: " + file_name)
 				
-				#Create a button for the save file
+				#Create an X button for the save file
 				var button = Button.new()
 				button.text = "X"  # Set the button text to the file name
 				@warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")
@@ -44,7 +44,7 @@ func refresh_list(): #creates a list of buttons per save file
 func _on_delete_save_button_pressed(button: Button) -> void:
 	# Retrieve the file path from the button's metadata
 	var file_path = button.get_meta("file_path").split(".", true, 1)
-	print("Save file deleted:", file_path[0])
+	print("Save file deleted: ", file_path[0])
 	
 	# deletes save
 	# input delete function here

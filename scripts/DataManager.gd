@@ -33,11 +33,11 @@ func load_all_scps(folder_path: String = "res://C_Template_Data/SCPs/"):
 
 
 
-var persistent_data_folder = "res://C_Persistent_Data/"
-var template_data_folder = "res://C_Template_Data/"
+const persistent_data_folder = "res://C_Persistent_Data/"
+const template_data_folder = "res://C_Template_Data/"
 
-var current_game_folder = "user://SCP_Foundations_current_game_data/"
-var save_folder = "user://SCP_Foundations_saved_game_data/"
+const current_game_folder = "user://SCP_Foundations_current_game_data/"
+const save_folder = "user://SCP_Foundations_saved_game_data/"
 
 
 func copy_folder(from: String, to: String):

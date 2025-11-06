@@ -26,7 +26,6 @@ func _ready() -> void:
 	
 
 
-
 func _on_new_game_button_pressed() -> void:
 	# new game file created from base template file
 	DataManager.copy_folder(DataManager.template_data_folder,DataManager.current_game_folder)
@@ -47,7 +46,7 @@ func _on_options_button_pressed() -> void:
 func _on_credits_button_pressed() -> void:
 	CreditBox.set_visible(!CreditBox.is_visible())
 	
-	DataManager.copy_folder(DataManager.current_game_folder,DataManager.save_folder)
+	DataManager.copy_folder(DataManager.current_game_folder,DataManager.save_folder + "save1")
 
 
 func _on_exit_game_button_pressed() -> void:
