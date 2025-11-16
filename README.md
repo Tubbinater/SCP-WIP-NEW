@@ -2,7 +2,7 @@
 A Grand Strategy Game about managing the SCP foundation.
 <img width="128" height="72" alt="Thumbnail" src="https://github.com/user-attachments/assets/d6a64a2a-8b16-45ad-8275-75f1f26f96a5" />
 
-## Forked from an Incredible and Generous Youtuber 
+## Forked from an [Incredible and Generous project](https://github.com/Thomas-Holtvedt/opengs)
 The creation is documented on the [YouTube Tutorial Series](https://www.youtube.com/playlist?list=PLz7HHPGLr7NLGJOin49X8VKNHoMHNfaKd)
 
 ## Fork Created by Tubbinater
