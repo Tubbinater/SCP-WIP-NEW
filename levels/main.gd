@@ -6,7 +6,7 @@ func _on_player_province_selected(coordinates) -> void:
 	var selected_province = $Provinces.color_to_province[province_color]
 	print(selected_province)
 	$ProvinceSelected.update_labels(selected_province)
-	$Map.highlight_province(selected_province)
+	$NavigationRegion3D/Map.highlight_province(selected_province)
 	$ProvinceSelected.set_position(selected_province, coordinates)
 	
 func _on_states_reparent_provinces(state) -> void: #move province node to state written in state-file (called in states) 

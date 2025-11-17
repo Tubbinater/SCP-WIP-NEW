@@ -1,5 +1,5 @@
 extends Node
-class_name GameData #makes it global
+class_name GameData
 
 var SCP := {} #dictionary of SCPs
 

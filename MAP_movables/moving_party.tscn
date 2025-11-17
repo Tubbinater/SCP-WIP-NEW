@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1w0g1icqwm8o"]
+
+[ext_resource type="Script" uid="uid://clgo4linuts8b" path="res://MAP_movables/moving_party.gd" id="1_i8qqv"]
+[ext_resource type="Texture2D" uid="uid://d8ar7nof40v5" path="res://icon.svg" id="1_t2nwc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i8qqv"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i8qqv"]
+
+[node name="MovingParty" type="CharacterBody3D"]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+motion_mode = 1
+script = ExtResource("1_i8qqv")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(130, 130)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport"]
+position = Vector2(65, 65)
+texture = ExtResource("1_t2nwc")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = SubResource("ViewportTexture_i8qqv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+shape = SubResource("SphereShape3D_i8qqv")

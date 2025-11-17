@@ -19,7 +19,7 @@ func _ready() -> void:
 	create_country_labels()
 	
 func create_lookup_texture() -> void:
-	var province_image : Image = get_parent().province_map.get_image()
+	var province_image : Image = get_parent().get_parent().province_map.get_image()
 	var lookup_image: Image = province_image.duplicate()
 	var color_map_r : int = 0
 	var color_map_g : int = 0
@@ -42,7 +42,7 @@ func create_color_map() -> void:
 		var lookup = province_color_to_lookup[province_color]
 		var x = lookup.r * 255
 		var y = lookup.g * 255
-		var province:Province = get_parent().get_node("Provinces").color_to_province.get(province_color)
+		var province:Province = get_parent().get_parent().get_node("Provinces").color_to_province.get(province_color)
 		if province.type == "land":
 			var owner_color :Color = province.province_owner.color
 			var controller_color :Color = province.province_controller.color
