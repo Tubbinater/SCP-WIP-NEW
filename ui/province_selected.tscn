@@ -47,6 +47,32 @@ text = "Owner"
 [node name="LabelOwner" type="Label" parent="PanelContainer/GridContainer"]
 layout_mode = 2
 
+[node name="CountryInput" type="TextEdit" parent="PanelContainer/GridContainer/LabelOwner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 183.0
+offset_top = -8.00001
+offset_right = 183.0
+offset_bottom = 1.4899807
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Input Country Name"
+
+[node name="SaveNameButton" type="Button" parent="PanelContainer/GridContainer/LabelOwner"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.2240001
+anchor_bottom = 1.046
+offset_left = 271.0
+offset_top = 26.0
+offset_right = 138.00798
+offset_bottom = 32.942
+grow_horizontal = 2
+grow_vertical = 2
+text = "Save Name"
+
 [node name="Label6" type="Label" parent="PanelContainer/GridContainer"]
 layout_mode = 2
 text = "Controller"
@@ -76,5 +102,7 @@ text = "Set Position"
 layout_mode = 2
 text = "Save"
 
+[connection signal="mouse_exited" from="PanelContainer/GridContainer/LabelOwner/CountryInput" to="." method="_on_country_input_mouse_exited"]
+[connection signal="button_up" from="PanelContainer/GridContainer/LabelOwner/SaveNameButton" to="." method="_on_save_name_button_button_up"]
 [connection signal="button_up" from="PanelContainer/GridContainer/ButtonSetPosition" to="." method="_on_button_set_position_button_up"]
 [connection signal="button_up" from="PanelContainer/GridContainer/ButtonSave" to="." method="_on_button_save_button_up"]

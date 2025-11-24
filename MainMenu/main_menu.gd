@@ -22,14 +22,12 @@ func _ready() -> void:
 		print("Credits failed to load")
 	
 	
-	
-	
 
 
 func _on_new_game_button_pressed() -> void:
 	# new game file created from base template file
 	DataManager.copy_folder(DataManager.template_data_folder,DataManager.current_game_folder)
-	# C:\Users\DON\AppData\Roaming\Godot\app_userdata\Open Grand Strategy - PCS
+	
 	
 	get_tree().change_scene_to_file("res://levels/main.tscn") #opens the game system, where it will pull all the global vars
 

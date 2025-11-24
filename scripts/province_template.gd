@@ -7,6 +7,8 @@ var type:String
 var province_owner:Country 
 var province_controller:Country
 var position: Vector2 = Vector2(0,0)
+var true_position : Vector2
+var country : String
 
 #moves state node to specified province node -> fires in country template
 func set_province_owner(tag): #triggered in state_template

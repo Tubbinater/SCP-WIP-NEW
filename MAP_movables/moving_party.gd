@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
-@export var SPEED: float = 3.0
-@export var stop_radius: float = 2
+@export var SPEED: float = 5.0
+@export var stop_radius: float = 1
 
-var target_position: Vector3 = Vector3(300,1,50)
+var target_position: Vector3 = Vector3(271,1,33)
 
 func _physics_process(_delta: float) -> void:
 	

@@ -1,6 +1,8 @@
 extends Node
 class_name GameData
 
+# C:\Users\DON\AppData\Roaming\Godot\app_userdata\Open Grand Strategy - PCS
+
 var SCP := {} #dictionary of SCPs
 
 func load_json(path: String) -> Dictionary: #load single JSON file, returns in dictionary format
@@ -76,4 +78,19 @@ func copy_folder(from: String, to: String):
 	
 	path.list_dir_end()
 	
-	
+const options_template = "res://C_Template_Data/Options.json"
+const options_ = "user://Options.json"
+
+func create_new_options(): #creates a saved options file to remember. creates one from template if none is there.
+	var check_exists = FileAccess.open(options_, FileAccess.READ)
+	if !check_exists:
+		var from := FileAccess.open(options_template, FileAccess.READ)
+		if from:
+			var data = from.get_buffer(from.get_length())
+			var to = FileAccess.open(options_, FileAccess.WRITE)
+			to.store_buffer(data)
+			
+			to.close()
+			from.close()
+	else:
+		print("found option settings: " + str(options_))

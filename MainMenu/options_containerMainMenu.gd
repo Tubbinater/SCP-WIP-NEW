@@ -14,7 +14,8 @@ func load_options(path: String) -> Dictionary: #load single JSON file, returns i
 
 func _ready() -> void:
 	
-	menu_options = load_options("res://C_Persistent_Data/Options.json")
+	DataManager.create_new_options()
+	menu_options = load_options("user://Options.json")
 	
 	# sets value at saved options
 	_on_general_volume_value_changed(menu_options["GeneralVolume"])
@@ -39,8 +40,8 @@ func _on_mute_check_box_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(0, toggled_on)
 
 # music volume
-func _on_music_volume_value_changed(value: float) -> void:
-	print(menu_options)
+func _on_music_volume_value_changed(_value: float) -> void:
+	pass
 
 
 # resolutions
