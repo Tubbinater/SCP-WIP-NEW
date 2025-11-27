@@ -26,10 +26,11 @@ func generate_provinces() -> void:
 			province.type = province_type
 			province.position = province_position
 			province.true_position = Vector2(province_position.x/10, province_position.y/10)
-			province.country = country_owner
-			if province_type == "land":
-				province.set_province_owner("NNN")
-				province.set_province_controller("NNN")
+			
+			if province_type == "land": #sets any land not accounted for to default (makes sure it doesn't break map code when calling provinces.
+				province.country_name = "No Name"
+			if country_owner != "":
+				province.country_name = country_owner
 			
 			add_child(province)
 			
@@ -48,7 +49,7 @@ func save_provinces_to_file() -> void: #(editor tool to update provinces)
 			province.type,
 			province.position.x,
 			province.position.y,
-			province.country
+			province.country_name
 		]
 		province_file.store_line(line)
 	print("Provinces saved successfully!")

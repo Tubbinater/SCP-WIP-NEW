@@ -19,11 +19,11 @@ func update_labels(province:Province):
 	province_color.color = province.color
 	province_type.text = province.type
 	province_position.text = str(province.position)
-	country_input.text = str(province.country)
+	country_input.text = str(province.country_name)
 	province_ = province
 	if province_type.text == "land":
 		province_owner.text = province.province_owner.country_name
-		province_controller.text = province.province_controller.country_name
+		province_controller.text = province.province_owner.country_name
 		province_state.text = str(province.get_parent().id)
 	else:
 		province_owner.text = ""
@@ -46,11 +46,9 @@ func _on_button_save_button_up() -> void:
 
 
 func _on_save_name_button_button_up() -> void:
-	province_.country = country_input.text
-	print(country_input.text)
-	DataManager.create_new_options()
+	province_.country_name = country_input.text
+	print("Saved as: " + country_input.text)
 
 
 func _on_country_input_mouse_exited() -> void:
 	country_input.release_focus()
-	print("lost focus")

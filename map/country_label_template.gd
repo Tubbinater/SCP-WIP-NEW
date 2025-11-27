@@ -5,7 +5,7 @@ var slope: float
 var angle: float
 
 func initial_data(country: Country) -> void:
-	name = country.tag
+	name = country.name
 	$Label.text = country.country_name
 	$Label.modulate.a = 0.9
 	country.map_label = self
@@ -13,7 +13,7 @@ func initial_data(country: Country) -> void:
 func update_data(country: Country) -> void:
 	var owned_cites = country.owned_provinces.filter(func(p): return p.position != Vector2(0,0))
 	
-	if owned_cites.is_empty() or country.tag == "NNN":
+	if owned_cites.is_empty() or country.country_name == "No Name":
 		$Label.hide()
 		return
 	else:
@@ -22,9 +22,17 @@ func update_data(country: Country) -> void:
 	calculate_linear_regression(owned_cites)
 	var city_min_x: float = min_x(owned_cites)
 	var city_max_x: float = max_x(owned_cites)
+		
 	var point_start = Vector2(city_min_x, intercept + (slope * city_min_x))
 	var point_end = Vector2(city_max_x, intercept + (slope * city_max_x))
+	
 	$Line2D.points = [point_start, point_end]
+	
+	#NOTE: figure out labels later. it needs two points? linear regression line maybe? idk, it not showing.
+	#if owned_cites.size() == 1:
+		#$Line2D.points = [point_start, point_end + Vector2(1000,0)]
+		#print("it work")
+	
 	
 	angle = $Line2D.points[0].angle_to_point($Line2D.points[1])
 	angle *= 180/3.14

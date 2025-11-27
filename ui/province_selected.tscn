@@ -59,6 +59,7 @@ offset_bottom = 1.4899807
 grow_horizontal = 2
 grow_vertical = 2
 placeholder_text = "Input Country Name"
+empty_selection_clipboard_enabled = false
 
 [node name="SaveNameButton" type="Button" parent="PanelContainer/GridContainer/LabelOwner"]
 layout_mode = 1

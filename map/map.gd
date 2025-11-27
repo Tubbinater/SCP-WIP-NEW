@@ -45,11 +45,11 @@ func create_color_map() -> void:
 		var province:Province = get_parent().get_parent().get_node("Provinces").color_to_province.get(province_color)
 		if province.type == "land":
 			var owner_color :Color = province.province_owner.color
-			var controller_color :Color = province.province_controller.color
+			var controller_color :Color = province.province_owner.color
 			color_map_political.set_pixel(x,y,owner_color)
 			color_map_political.set_pixel(x,y+100,controller_color)
 			var owner_ideology_color :Color = province.province_owner.ideology_color
-			var controller_ideology_color :Color = province.province_controller.ideology_color
+			var controller_ideology_color :Color = province.province_owner.ideology_color
 			color_map_ideology.set_pixel(x,y,owner_ideology_color)
 			color_map_ideology.set_pixel(x,y+100,controller_ideology_color)
 

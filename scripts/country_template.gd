@@ -5,12 +5,14 @@ class_name Country
 var owned_provinces: Array[Province] #used to store current provinces
 var map_label: Node2D
 
-#both are triggered in country_template
+#both are triggered in province_template
 func add_province(province: Province) -> void:
 	owned_provinces.append(province)
+	#update array, then save json note
 
 func remove_province(province: Province) -> void:
 	owned_provinces.erase(province)
+	#delete in array, the save json note
 
 var tag:String
 var country_name:String

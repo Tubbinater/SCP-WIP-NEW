@@ -5,9 +5,9 @@ var id:int
 var state_name:String
 var	provinces:Array
 
-func set_state_owner(tag): # triggered in state importer
+func set_state_owner(): # triggered in state importer
 	for node in get_children():
-		node.set_province_owner(tag) #fires in province template
+		node.set_province_owner() #fires in province template
 		
 func set_state_controller(tag): # triggered in state importer
 	for node in get_children():

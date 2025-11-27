@@ -3,7 +3,7 @@ class_name GameData
 
 # C:\Users\DON\AppData\Roaming\Godot\app_userdata\Open Grand Strategy - PCS
 
-var SCP := {} #dictionary of SCPs
+var SCP := {} #dictionary of SCPs **MOVE TO GLOBALS
 
 func load_json(path: String) -> Dictionary: #load single JSON file, returns in dictionary format
 	var file = FileAccess.open(path, FileAccess.READ)
