@@ -14,15 +14,15 @@ func remove_province(province: Province) -> void:
 	owned_provinces.erase(province)
 	#delete in array, the save json note
 
-var tag:String
-var country_name:String
-var color:Color
-var ideology:String: # This is where you add more ideology (template for more stuff like this.)
+var tag : String
+var country_name : String
+var color : Color
+var GOI : String: # This is where you add more ideology (template for more stuff like this.)
 	set(value):
-		ideology = value
-		match ideology:
-			"Democratic":
-				ideology_color = Color("BLUE")
-			"Communist":
-				ideology_color = Color("RED")
-var ideology_color:Color # used in var ideology
+		GOI = value
+		match GOI:
+			"SCP":
+				GOI_color = Color("DARK_GRAY")
+			"GOC":
+				GOI_color = Color("BLUE")
+var GOI_color : Color # used in var ideology

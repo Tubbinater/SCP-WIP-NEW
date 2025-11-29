@@ -3,14 +3,14 @@ extends StaticBody3D
 @onready var province_color_to_lookup : Dictionary
 @onready var map_material_2d = load("res://map/shaders/map2D.tres")
 @onready var color_map_political:Image = Image.create(256,256,false,Image.FORMAT_RGB8)
-@onready var color_map_ideology:Image = Image.create(256,256,false,Image.FORMAT_RGB8)
+@onready var color_map_GOI:Image = Image.create(256,256,false,Image.FORMAT_RGB8)
 
 var current_map_mode:Image
 var color_map_texture:ImageTexture
 
 var previously_selected_provinces :PackedColorArray
 
-enum MapMode {POLITICAL, IDEOLOGY}
+enum MapMode {POLITICAL, GOI}
 
 func _ready() -> void:
 	create_lookup_texture()
@@ -48,10 +48,16 @@ func create_color_map() -> void:
 			var controller_color :Color = province.province_owner.color
 			color_map_political.set_pixel(x,y,owner_color)
 			color_map_political.set_pixel(x,y+100,controller_color)
-			var owner_ideology_color :Color = province.province_owner.ideology_color
-			var controller_ideology_color :Color = province.province_owner.ideology_color
-			color_map_ideology.set_pixel(x,y,owner_ideology_color)
-			color_map_ideology.set_pixel(x,y+100,controller_ideology_color)
+			var owner_GOI_color :Color = province.province_owner.GOI_color
+			var controller_GOI_color :Color = province.province_owner.GOI_color
+			color_map_GOI.set_pixel(x,y,owner_GOI_color)
+			color_map_GOI.set_pixel(x,y+100,controller_GOI_color) #controller fixes chackerboard, for sum reason?
+			
+		if province.type != "land":
+			color_map_political.set_pixel(x,y,Color("3b6977ff"))
+			color_map_political.set_pixel(x,y+100,Color("3b6977ff"))
+			color_map_GOI.set_pixel(x,y,Color("3b6977ff"))
+			color_map_GOI.set_pixel(x,y+100,Color("3b6977ff"))
 
 # updates color of province and state selected
 func update_color_map(input_color:Color, output_color:Color, offset:int) -> void:
@@ -60,7 +66,7 @@ func update_color_map(input_color:Color, output_color:Color, offset:int) -> void
 		var x = lookup.r * 255
 		var y = lookup.g * 255
 		color_map_political.set_pixel(x,y+offset,output_color)
-		color_map_ideology.set_pixel(x,y+offset,output_color)
+		color_map_GOI.set_pixel(x,y+offset,output_color)
 		current_map_mode.set_pixel(x,y+offset,output_color)
 	
 	
@@ -74,8 +80,8 @@ func set_map_mode_political() -> void: #updates map shader for colors
 		highlight_province(memory_selected) #re-highlights, to make it align with map view when switched
 	update_map_shader()
 
-func set_map_mode_ideology() -> void: # updates map shaders for colors
-	current_map_mode = color_map_ideology
+func set_map_mode_GOI() -> void: # updates map shaders for colors
+	current_map_mode = color_map_GOI
 	if memory_selected:
 		highlight_province(memory_selected)
 	update_map_shader()
@@ -125,8 +131,8 @@ func _on_map_modes_map_mode_selected(mode: Variant) -> void:
 	match mode:
 		MapMode.POLITICAL:
 			set_map_mode_political()
-		MapMode.IDEOLOGY:
-			set_map_mode_ideology()
+		MapMode.GOI:
+			set_map_mode_GOI()
 
 func create_country_labels() -> void:
 	var country_label_template: PackedScene = load("res://map/country_label_template.tscn")

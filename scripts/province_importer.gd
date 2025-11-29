@@ -31,6 +31,8 @@ func generate_provinces() -> void:
 				province.country_name = "No Name"
 			if country_owner != "":
 				province.country_name = country_owner
+			if province_type != "land": #DEBUG / TEMP code -> for changing small province land types into sea.
+				province.country_name = ""
 			
 			add_child(province)
 			

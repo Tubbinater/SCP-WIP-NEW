@@ -24,9 +24,10 @@ columns = 2
 layout_mode = 2
 text = "Political"
 
-[node name="ButtonIdeology" type="Button" parent="PanelContainer/GridContainer"]
+[node name="ButtonGOI" type="Button" parent="PanelContainer/GridContainer"]
 layout_mode = 2
-text = "Ideology"
+size_flags_horizontal = 3
+text = "GOIs"
 
 [connection signal="button_up" from="PanelContainer/GridContainer/ButtonPolitical" to="." method="_on_button_political_button_up"]
-[connection signal="button_up" from="PanelContainer/GridContainer/ButtonIdeology" to="." method="_on_button_ideology_button_up"]
+[connection signal="button_up" from="PanelContainer/GridContainer/ButtonGOI" to="." method="_on_button_GOI_button_up"]

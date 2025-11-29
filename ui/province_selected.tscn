@@ -40,6 +40,20 @@ text = "Province Type"
 [node name="LabelProvinceType" type="Label" parent="PanelContainer/GridContainer"]
 layout_mode = 2
 
+[node name="ProvinceInput" type="TextEdit" parent="PanelContainer/GridContainer/LabelProvinceType"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 183.0
+offset_top = -20.0
+offset_right = 183.0
+offset_bottom = -10.51001
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Input Rpovince Type"
+empty_selection_clipboard_enabled = false
+
 [node name="Label2" type="Label" parent="PanelContainer/GridContainer"]
 layout_mode = 2
 text = "Owner"
@@ -103,6 +117,7 @@ text = "Set Position"
 layout_mode = 2
 text = "Save"
 
+[connection signal="mouse_exited" from="PanelContainer/GridContainer/LabelProvinceType/ProvinceInput" to="." method="_on_country_input_2_mouse_exited"]
 [connection signal="mouse_exited" from="PanelContainer/GridContainer/LabelOwner/CountryInput" to="." method="_on_country_input_mouse_exited"]
 [connection signal="button_up" from="PanelContainer/GridContainer/LabelOwner/SaveNameButton" to="." method="_on_save_name_button_button_up"]
 [connection signal="button_up" from="PanelContainer/GridContainer/ButtonSetPosition" to="." method="_on_button_set_position_button_up"]
