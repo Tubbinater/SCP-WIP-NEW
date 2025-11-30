@@ -30,7 +30,7 @@ func update_labels(province:Province):
 	else:
 		province_owner.text = ""
 		province_controller.text = ""
-		province_state.text =""
+		province_state.text = ""
 
 
 func _on_button_set_position_button_up() -> void:

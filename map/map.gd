@@ -5,6 +5,7 @@ extends StaticBody3D
 @onready var color_map_political:Image = Image.create(256,256,false,Image.FORMAT_RGB8)
 @onready var color_map_GOI:Image = Image.create(256,256,false,Image.FORMAT_RGB8)
 
+
 var current_map_mode:Image
 var color_map_texture:ImageTexture
 

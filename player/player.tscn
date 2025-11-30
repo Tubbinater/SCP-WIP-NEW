@@ -7,10 +7,5 @@ script = ExtResource("1_oul6g")
 camera_zoom_min = -85.0
 camera_zoom_max = 500.0
 
-[node name="CameraSocket" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.0871558, 0.996195, 0, -0.996195, 0.0871558, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraSocket"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
-
-[node name="RayCast3D" type="RayCast3D" parent="CameraSocket/Camera3D"]
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 100, 0)

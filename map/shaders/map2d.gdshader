@@ -25,4 +25,5 @@ void fragment() {
 	final_color = mix(final_color, selected_color, step(0.5, float(selected_color.rgb != vec3(0.0))));
 	
 	COLOR = final_color;
+	
 }

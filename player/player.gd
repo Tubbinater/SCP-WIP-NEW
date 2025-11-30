@@ -3,11 +3,10 @@ extends Node3D
 signal province_selected
 
 #Nodes
-@onready var camera: Camera3D = $CameraSocket/Camera3D
-@onready var camera_socket: Node3D = $CameraSocket
+@onready var camera: Camera3D = $Camera3D
 
 #Camera move
-@export_range(0,1000,1) var camera_move_speed:float = 500.0
+@export_range(0,1000,1) var camera_move_speed:float = 350.0
 #adjust position speed based on zoom distance
 @onready var camera_move_speed_adjusted_w_zoom:float = camera_move_speed + abs(camera.position.y)
 #change speed based on player shift input (change in function, not here)
@@ -17,8 +16,6 @@ var camera_shift_speed:int = 1
 var camera_rotation_direction:float = 0
 @export_range(0,10,0.1) var camera_rotation_speed:float = 0.20
 @export_range(0,20,1) var camera_base_rotation_speed:float = 6
-@export_range(0,10,1) var camera_socket_rotation_x_min:float = -1.60
-@export_range(0,10,1) var camera_socket_rotation_x_max:float = -0.20
 
 #Camera pan
 @export_range(0,32,4) var camera_automatic_pan_margin:int = 16
@@ -48,8 +45,8 @@ var mouse_last_position:Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	camera_zoom_min = -70
-	camera_zoom_max = 10
+	camera_zoom_min = 10
+	camera_zoom_max = 150
 	
 func _process(delta:float) -> void:
 	if !camera_can_process: return
@@ -57,7 +54,6 @@ func _process(delta:float) -> void:
 	camera_zoom_update(delta)
 	camera_automatic_pan(delta)
 	camera_base_rotate(delta)
-	#camera_rotate_to_mouse_offsets(delta)
 
 
 #Moves the base of camera
@@ -74,7 +70,7 @@ func camera_base_move(delta:float) -> void:
 	else: camera_shift_speed = 1
 	
 	#adjust camera speed based on zoom distance and shift input
-	camera_move_speed_adjusted_w_zoom = (camera_move_speed + camera.position.z) * camera_shift_speed
+	camera_move_speed_adjusted_w_zoom = (camera_move_speed + camera.position.y) * camera_shift_speed
 	
 	position += velocity_direction.normalized() * camera_move_speed_adjusted_w_zoom  * delta
 
@@ -126,30 +122,18 @@ func camera_zoom_update(delta:float) -> void:
 	var zoom_amount = camera_zoom_speed * -camera_zoom_direction * delta
 	
 	# Move the socket instead of the camera itself
-	var new_pos = position
+	var new_pos = camera.position
 	new_pos.y = clamp(
 		new_pos.y + zoom_amount,
 		camera_zoom_min,
 		camera_zoom_max
 	)
-	position = new_pos
+	camera.position = new_pos
 
 	camera_zoom_direction *= camera_zoom_speed_damp
 
 
-# Rotate the camera socket based on mouse offset
-func camera_rotate_to_mouse_offsets(delta:float) -> void:
-	if !camera_can_rotate_by_mouse_offfset or !camera_is_rotating_mouse: return
-	
-	var mouse_offset:Vector2 = get_viewport().get_mouse_position()
-	mouse_offset = mouse_offset - mouse_last_position
-	
-	mouse_last_position = get_viewport().get_mouse_position()
-	
-	#camera_base_rotate_left_right(delta,mouse_offset.x) #Remove comment to get y rotation on mouse
-	camera_socket_rotate_x(delta,mouse_offset.y)
-	
-	
+
 #Rotates the camera base
 func camera_base_rotate(delta:float) -> void:
 	if !camera_can_rotate_base or !camera_is_rotating_base : return
@@ -157,16 +141,7 @@ func camera_base_rotate(delta:float) -> void:
 	#To rotate
 	camera_base_rotate_left_right(delta, camera_rotation_direction * camera_base_rotation_speed)
 
-#Rotates the socket of the camera
-func camera_socket_rotate_x(delta:float, dir:float) -> void:
-	if !camera_can_rotate_socket_x  : return
-	
-	var new_rotation_x:float = camera_socket.rotation.x
-	new_rotation_x -= dir * delta * camera_rotation_speed
-	
-	new_rotation_x = clamp(new_rotation_x,camera_socket_rotation_x_min,camera_socket_rotation_x_max)
-	camera_socket.rotation.x = new_rotation_x
-	
+
 #Rotates the camera speed left or right
 func camera_base_rotate_left_right(delta:float, dir:float) -> void:
 	rotation.y += dir * camera_rotation_speed * delta
@@ -197,24 +172,12 @@ func camera_automatic_pan(delta:float) -> void:
 		global_translate(Vector3(0, 0, pan_direction.y * delta * camera_automatic_pan_speed * zoom_factor))
 		
 
-@onready var ray_cast_3d: RayCast3D = $CameraSocket/Camera3D/RayCast3D
 
-func shoot_ray():
-	#var mouse_pos = get_viewport().get_mouse_position()
-	#ray_cast_3d.target_position = camera.project_local_ray_normal(mouse_pos) * 1000
-	#ray_cast_3d.force_raycast_update()
-	#
-	#if ray_cast_3d.is_colliding():
-		#province_selected.emit(Vector2(ray_cast_3d.get_collision_point().x,ray_cast_3d.get_collision_point().z))
-
-	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_length = 2000
-	var from = camera.project_ray_origin(mouse_pos)
-	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
-	var space = get_world_3d().direct_space_state
-	var ray_query = PhysicsRayQueryParameters3D.new()
-	ray_query.from = from
-	ray_query.to = to
-	var raycast_result = space.intersect_ray(ray_query)
-	if !raycast_result.is_empty():
-		province_selected.emit(Vector2(raycast_result.position.x,raycast_result.position.z))
+func shoot_ray(): #https://forum.godotengine.org/t/get-mouse-position-not-aligh-towards-the-edge-of-screen/108126/18
+	var mouse_position = get_viewport().get_mouse_position()
+	var target_plane_mouse = Plane(-camera.global_basis.z,0)
+	var from = camera.project_ray_origin(mouse_position)
+	var dir = camera.project_ray_normal(mouse_position)
+	var cursor_position_on_plane = target_plane_mouse.intersects_ray(from,dir)
+	if cursor_position_on_plane:
+		province_selected.emit(Vector2(cursor_position_on_plane.x,cursor_position_on_plane.z))
