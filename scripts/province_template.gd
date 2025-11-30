@@ -20,7 +20,7 @@ func set_province_owner(): #triggered in state_template
 		province_owner = Globals.tag_to_country[country_name]
 		province_owner.add_province(self) #found in Country_Template - reparents province to country
 	else:
-		push_warning("Cannot reparent province due to error in country_name: " + country_name)
+		push_warning("Cannot reparent province due to error in country_name: " + country_name + ", id: " + str(id))
 	
 #sets controller to specified tag
 func set_province_controller(tag): #triggered in state_template

@@ -9,7 +9,7 @@ signal province_selected
 #Camera move
 @export_range(0,1000,1) var camera_move_speed:float = 500.0
 #adjust position speed based on zoom distance
-@onready var camera_move_speed_adjusted_w_zoom:float = camera_move_speed + camera.position.z
+@onready var camera_move_speed_adjusted_w_zoom:float = camera_move_speed + abs(camera.position.y)
 #change speed based on player shift input (change in function, not here)
 var camera_shift_speed:int = 1
 
@@ -27,8 +27,8 @@ var camera_rotation_direction:float = 0
 #Camera zoom
 var camera_zoom_direction:float = 0
 @export_range(0,1000,1) var camera_zoom_speed:float = 1000.0
-@export_range(0,100,1) var camera_zoom_min:float = 40.0
-@export_range(0,1000,1) var camera_zoom_max:float = 1000.0
+@export_range(-100,100,1) var camera_zoom_min:float = -70
+@export_range(0,1000,1) var camera_zoom_max:float = 10
 @export_range(0,2,.1) var camera_zoom_speed_damp:float = 0.92
 
 #flags
@@ -48,7 +48,8 @@ var mouse_last_position:Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	pass
+	camera_zoom_min = -70
+	camera_zoom_max = 10
 	
 func _process(delta:float) -> void:
 	if !camera_can_process: return
@@ -56,7 +57,7 @@ func _process(delta:float) -> void:
 	camera_zoom_update(delta)
 	camera_automatic_pan(delta)
 	camera_base_rotate(delta)
-	camera_rotate_to_mouse_offsets(delta)
+	#camera_rotate_to_mouse_offsets(delta)
 
 
 #Moves the base of camera
@@ -112,32 +113,29 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func camera_zoom_update(delta:float) -> void:
-	#if !camera_can_zoom: return
-	
-	#var zoom_factor = camera_zoom_speed * camera_zoom_direction * delta
-	#var mouse_pos = get_viewport().get_mouse_position()
-	#var ray_origin = camera.project_ray_origin(mouse_pos)
-	#var ray_dir = camera.project_ray_normal(mouse_pos)
-	#var space = get_world_3d().direct_space_state
-	#var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_dir * 2000)
-	#var result = space.intersect_ray(ray_query)
-	
-	#if result:
-		#var target_point = result.position
-		#var cam_to_target = (target_point - camera.global_position).normalized()
-		#camera.global_position += cam_to_target * zoom_factor
-	#else:
-		#camera.global_position += ray_dir * zoom_factor
-	
-	#camera.position.z = clamp(camera.position.z, camera_zoom_min, camera_zoom_max)
+	#if !camera_can_zoom:return
+	#
+	#var new_zoom:float = clamp(camera.position.z + camera_zoom_speed * -(camera_zoom_direction) * delta, camera_zoom_min, camera_zoom_max)
+	#
+	#camera.position.z = new_zoom
 	#camera_zoom_direction *= camera_zoom_speed_damp
+	#########################################
+	
+	if !camera_can_zoom: return
 
-	if !camera_can_zoom:return
+	var zoom_amount = camera_zoom_speed * -camera_zoom_direction * delta
 	
-	var new_zoom:float = clamp(camera.position.z + camera_zoom_speed * -(camera_zoom_direction) * delta, camera_zoom_min, camera_zoom_max)
-	
-	camera.position.z = new_zoom
+	# Move the socket instead of the camera itself
+	var new_pos = position
+	new_pos.y = clamp(
+		new_pos.y + zoom_amount,
+		camera_zoom_min,
+		camera_zoom_max
+	)
+	position = new_pos
+
 	camera_zoom_direction *= camera_zoom_speed_damp
+
 
 # Rotate the camera socket based on mouse offset
 func camera_rotate_to_mouse_offsets(delta:float) -> void:
@@ -178,27 +176,37 @@ func camera_automatic_pan(delta:float) -> void:
 	if !camera_can_automatic_pan: return
 	
 	var viewport_current:Viewport = get_viewport()
-	var pan_direction:Vector2 = Vector2(-1,-1) #Starts negative
+	var pan_direction:Vector2 = Vector2(1,1) #Starts negative
 	var viewport_visible_rectangle:Rect2i = Rect2i(viewport_current.get_visible_rect())
 	var viewport_size:Vector2i = viewport_visible_rectangle.size
 	var current_mouse_position:Vector2 = viewport_current.get_mouse_position()
 	var margin:float = camera_automatic_pan_margin #Shortcut var
 	
-	var zoom_factor:float = camera.position.z * 0.1
+	var zoom_factor:float = position.y * 0.1
 	
 	#X pan
 	if ((current_mouse_position.x < margin) or (current_mouse_position.x > viewport_size.x - margin)):
 		if current_mouse_position.x > viewport_size.x/2.0:
-			pan_direction.x = 1
-		translate(Vector3(pan_direction.x * delta * camera_automatic_pan_speed * zoom_factor,0,0))
+			pan_direction.x = -1
+		global_translate(Vector3(pan_direction.x * delta * camera_automatic_pan_speed * zoom_factor,0,0))
 	
 	#Y pan
 	if ((current_mouse_position.y < margin) or (current_mouse_position.y > viewport_size.y - margin)):
 		if current_mouse_position.y > viewport_size.y/2.0:
-			pan_direction.y = 1
-		translate(Vector3(0, 0, pan_direction.y * delta * camera_automatic_pan_speed * zoom_factor))
+			pan_direction.y = -1
+		global_translate(Vector3(0, 0, pan_direction.y * delta * camera_automatic_pan_speed * zoom_factor))
 		
+
+@onready var ray_cast_3d: RayCast3D = $CameraSocket/Camera3D/RayCast3D
+
 func shoot_ray():
+	#var mouse_pos = get_viewport().get_mouse_position()
+	#ray_cast_3d.target_position = camera.project_local_ray_normal(mouse_pos) * 1000
+	#ray_cast_3d.force_raycast_update()
+	#
+	#if ray_cast_3d.is_colliding():
+		#province_selected.emit(Vector2(ray_cast_3d.get_collision_point().x,ray_cast_3d.get_collision_point().z))
+
 	var mouse_pos = get_viewport().get_mouse_position()
 	var ray_length = 2000
 	var from = camera.project_ray_origin(mouse_pos)

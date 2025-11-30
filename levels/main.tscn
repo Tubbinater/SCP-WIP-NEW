@@ -46,7 +46,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_wdj6m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 298.085, -50, 35.765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 298.085, 0, 35.765)
 camera_move_speed = 10.0
 camera_zoom_speed = 100.0
 camera_zoom_min = 5.0
