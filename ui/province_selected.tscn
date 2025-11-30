@@ -41,6 +41,7 @@ text = "Province Type"
 layout_mode = 2
 
 [node name="ProvinceInput" type="TextEdit" parent="PanelContainer/GridContainer/LabelProvinceType"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,6 +109,27 @@ text = "Position"
 
 [node name="LabelPosition" type="Label" parent="PanelContainer/GridContainer"]
 layout_mode = 2
+
+[node name="Label9" type="Label" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+text = "GOI"
+
+[node name="LabelGOI" type="Label" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+
+[node name="GOI_Input" type="TextEdit" parent="PanelContainer/GridContainer/LabelGOI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 183.0
+offset_top = -12.5
+offset_right = 183.0
+offset_bottom = -3.0100098
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Input GOI"
+empty_selection_clipboard_enabled = false
 
 [node name="ButtonSetPosition" type="Button" parent="PanelContainer/GridContainer"]
 layout_mode = 2

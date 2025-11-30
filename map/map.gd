@@ -49,8 +49,8 @@ func create_color_map() -> void:
 			var controller_color :Color = province.province_owner.color
 			color_map_political.set_pixel(x,y,owner_color)
 			color_map_political.set_pixel(x,y+100,controller_color)
-			var owner_GOI_color :Color = province.province_owner.GOI_color
-			var controller_GOI_color :Color = province.province_owner.GOI_color
+			var owner_GOI_color :Color = province.GOI_color
+			var controller_GOI_color :Color = province.GOI_color
 			color_map_GOI.set_pixel(x,y,owner_GOI_color)
 			color_map_GOI.set_pixel(x,y+100,controller_GOI_color) #controller fixes chackerboard, for sum reason?
 			

@@ -17,12 +17,14 @@ func remove_province(province: Province) -> void:
 var tag : String
 var country_name : String
 var color : Color
-var GOI : String: # This is where you add more ideology (template for more stuff like this.)
-	set(value):
-		GOI = value
-		match GOI:
-			"SCP":
-				GOI_color = Color("DARK_GRAY")
-			"GOC":
-				GOI_color = Color("BLUE")
-var GOI_color : Color # used in var ideology
+
+########### found in province template ######################
+#var GOI : String: # This is where you add more ideology (template for more stuff like this.)
+	#set(value):
+		#GOI = value
+		#match GOI:
+			#"SCP":
+				#GOI_color = Color("DARK_GRAY")
+			#"GOC":
+				#GOI_color = Color("BLUE")
+#var GOI_color : Color # used in var GOI

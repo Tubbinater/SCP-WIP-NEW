@@ -7,8 +7,22 @@ var type:String
 var province_owner:Country 
 var province_controller:Country
 var position: Vector2 = Vector2(0,0)
-var true_position : Vector2
+var true_position : Vector2 #position saved before x10 - used for unit navigation
 var country_name : String
+
+var GOI_occupation : String :  #used in MAP.gd for GOI map mode
+	set(value):
+		GOI_occupation = value
+		match GOI_occupation:
+			"SCP":
+				GOI_color = Color("DARK_GRAY")
+			"GOC":
+				GOI_color = Color("BLUE")
+			"":
+				GOI_color = Color()
+var GOI_color : Color # used in var GOI_occupation
+
+
 
 #moves province node to specified state node -> fires in country template
 func set_province_owner(): #triggered in state_template

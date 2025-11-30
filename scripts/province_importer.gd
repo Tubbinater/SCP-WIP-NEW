@@ -18,6 +18,7 @@ func generate_provinces() -> void:
 			var province_type:String = columns[4]
 			var province_position: Vector2 = Vector2(float(columns[5]),float(columns[6]))
 			var country_owner: String = str(columns[7])
+			var province_GOI: String = str(columns[8])
 			
 			var province:Province = Province.new()
 			province.name = str(province_id)
@@ -25,6 +26,7 @@ func generate_provinces() -> void:
 			province.color = province_color
 			province.type = province_type
 			province.position = province_position
+			province.GOI_occupation = province_GOI
 			province.true_position = Vector2(province_position.x/10, province_position.y/10)
 			
 			if province_type == "land": #sets any land not accounted for to default (makes sure it doesn't break map code when calling provinces.
@@ -43,7 +45,7 @@ func save_provinces_to_file() -> void: #(editor tool to update provinces)
 	var province_file = FileAccess.open("res://C_Template_Data/map_data/Provinces.txt", FileAccess.WRITE)
 	for province in color_to_province.values():
 		var color = province.color
-		var line = "%d,%d,%d,%d,%s,%.2f,%.2f,%s" % [
+		var line = "%d,%d,%d,%d,%s,%.2f,%.2f,%s,%s" % [
 			province.id,
 			int(color.r * 255),
 			int(color.g * 255),
@@ -51,7 +53,8 @@ func save_provinces_to_file() -> void: #(editor tool to update provinces)
 			province.type,
 			province.position.x,
 			province.position.y,
-			province.country_name
+			province.country_name,
+			province.GOI_occupation
 		]
 		province_file.store_line(line)
 	print("Provinces saved successfully!")

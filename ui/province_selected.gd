@@ -8,6 +8,8 @@ extends CanvasLayer
 @onready var province_position = $PanelContainer/GridContainer/LabelPosition
 @onready var country_input: TextEdit = $PanelContainer/GridContainer/LabelOwner/CountryInput
 @onready var province_input: TextEdit = $PanelContainer/GridContainer/LabelProvinceType/ProvinceInput
+@onready var label_goi: Label = $PanelContainer/GridContainer/LabelGOI
+@onready var goi_input: TextEdit = $PanelContainer/GridContainer/LabelGOI/GOI_Input
 
 
 var is_setting_province_position: bool = false
@@ -22,6 +24,8 @@ func update_labels(province:Province):
 	province_position.text = str(province.position)
 	country_input.text = str(province.country_name)
 	province_input.text = str(province.type)
+	label_goi.text = str(province.GOI_occupation)
+	goi_input.text = str(province.GOI_occupation)
 	province_ = province
 	if province_type.text == "land":
 		province_owner.text = province.province_owner.country_name
@@ -50,7 +54,8 @@ func _on_button_save_button_up() -> void:
 func _on_save_name_button_button_up() -> void:
 	province_.country_name = country_input.text
 	province_.type = province_input.text
-	print("Saved as: " + province_.country_name + ", type: " + province_.type)
+	province_.GOI_occupation = goi_input.text
+	print("Saved as: " + province_.country_name + ", type: " + province_.type + ", GOI: " + province_.GOI_occupation)
 	
 
 
