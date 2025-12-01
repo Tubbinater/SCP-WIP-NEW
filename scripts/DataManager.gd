@@ -78,7 +78,7 @@ func copy_folder(from: String, to: String):
 	
 	path.list_dir_end()
 	
-const options_template = "res://C_Template_Data/Options.json"
+const options_template = "res://C_saved_data/Options.json"
 const options_ = "user://Options.json"
 
 func create_new_options(): #creates a saved options file to remember. creates one from template if none is there.

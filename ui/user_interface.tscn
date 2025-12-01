@@ -1,0 +1,164 @@
+[gd_scene load_steps=13 format=3 uid="uid://ycjgmfvkvx56"]
+
+[ext_resource type="Script" uid="uid://b1np4t2pybigo" path="res://ui/user_interface.gd" id="1_mm06q"]
+[ext_resource type="Texture2D" uid="uid://g3wwmgbpk50k" path="res://images/UI_Textures/sheet_white1x.png" id="2_ue2kl"]
+[ext_resource type="Texture2D" uid="uid://be4d84mi8dd37" path="res://images/UI_Textures/arrow button 3 and 4.png" id="3_r3gyj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj86k"]
+bg_color = Color(0.29803923, 0.3254902, 0.34901962, 1)
+border_width_bottom = 3
+border_color = Color(0.52156866, 0.59607846, 0.6509804, 1)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_mm06q"]
+Panel/styles/panel = SubResource("StyleBoxFlat_vj86k")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3gyj"]
+bg_color = Color(0.69411767, 0.69411767, 0.69411767, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_ue2kl"]
+Button/styles/normal = SubResource("StyleBoxFlat_r3gyj")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3gyj"]
+atlas = ExtResource("2_ue2kl")
+region = Rect2(199.107, 353.27, 51.282, 41.204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5skvp"]
+atlas = ExtResource("2_ue2kl")
+region = Rect2(356.818, 350.416, 34.603, 48.531)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1g8x"]
+atlas = ExtResource("2_ue2kl")
+region = Rect2(351.183, 454.347, 50.445, 43.22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy7nh"]
+atlas = ExtResource("3_r3gyj")
+region = Rect2(350.161, 453.567, 68.822, 44.647)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmx2r"]
+atlas = ExtResource("3_r3gyj")
+region = Rect2(351.513, 415.188, 83.777, 43.242)
+
+[node name="UserInterface" type="CanvasLayer"]
+script = ExtResource("1_mm06q")
+
+[node name="Top_Panel" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = SubResource("Theme_mm06q")
+
+[node name="DateLabel" type="Label" parent="Top_Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 469.0
+offset_top = 1.0
+offset_right = 569.0
+offset_bottom = 26.125
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "00/00/0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -295.0
+offset_top = 1.0
+offset_right = -115.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="PauseButton" type="Button" parent="Top_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ue2kl")
+toggle_mode = true
+
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/PauseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_r3gyj")
+expand_mode = 1
+
+[node name="Speed1Button" type="Button" parent="Top_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ue2kl")
+toggle_mode = true
+
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed1Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5skvp")
+expand_mode = 1
+
+[node name="Speed2Button" type="Button" parent="Top_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ue2kl")
+toggle_mode = true
+
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed2Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_j1g8x")
+expand_mode = 1
+
+[node name="Speed3Button" type="Button" parent="Top_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ue2kl")
+toggle_mode = true
+
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed3Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_wy7nh")
+expand_mode = 1
+
+[node name="Speed4Button" type="Button" parent="Top_Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ue2kl")
+toggle_mode = true
+
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed4Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_bmx2r")
+expand_mode = 1

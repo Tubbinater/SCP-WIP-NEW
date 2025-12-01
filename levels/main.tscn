@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6hm5mv4x2n7f"]
+[gd_scene load_steps=17 format=3 uid="uid://b6hm5mv4x2n7f"]
 
 [ext_resource type="PackedScene" uid="uid://cgerfy3y3klhk" path="res://map/map.tscn" id="1_2262g"]
 [ext_resource type="Script" uid="uid://5td4ffqk5up" path="res://levels/main.gd" id="1_l8qe7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://5arm34pep1aj" path="res://ui/province_selected.tscn" id="6_5k4jt"]
 [ext_resource type="Script" uid="uid://cop0wv5f1ngy0" path="res://scripts/state_importer.gd" id="6_qy63d"]
 [ext_resource type="Script" uid="uid://2ex5m8v5kxf1" path="res://scripts/scps_importer.gd" id="7_jw1n3"]
+[ext_resource type="PackedScene" uid="uid://ycjgmfvkvx56" path="res://ui/user_interface.tscn" id="9_c7dyn"]
 [ext_resource type="PackedScene" uid="uid://cdy1220h7wcq3" path="res://ui/map_modes.tscn" id="9_etqu2"]
 [ext_resource type="PackedScene" uid="uid://d1w0g1icqwm8o" path="res://MAP_movables/moving_party.tscn" id="11_xdh4e"]
 
@@ -67,6 +68,8 @@ script = ExtResource("7_jw1n3")
 
 [node name="ProvinceSelected" parent="." instance=ExtResource("6_5k4jt")]
 
+[node name="UserInterface" parent="." instance=ExtResource("9_c7dyn")]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_21ko3")
 
@@ -121,7 +124,12 @@ affect_navigation_mesh = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 347.653, 0.5, 23.115)
 axis_lock_linear_y = false
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.2
+autostart = true
+
 [connection signal="province_selected" from="Player" to="." method="_on_player_province_selected"]
 [connection signal="reparent_provinces" from="States" to="." method="_on_states_reparent_provinces"]
 [connection signal="save_provinces" from="ProvinceSelected" to="Provinces" method="_on_province_selected_save_provinces"]
 [connection signal="map_mode_selected" from="NavigationRegion3D/Map/MapModes" to="NavigationRegion3D/Map" method="_on_map_modes_map_mode_selected"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -13,3 +13,46 @@ func _on_states_reparent_provinces(state) -> void: #move province node to state 
 	for province in state.provinces:
 		var node_to_move = $Provinces.get_node(province)
 		node_to_move.reparent(state)
+
+
+
+func grab_date() -> void:
+	pass
+
+func _on_timer_timeout() -> void:
+	update_time_data()
+
+
+@onready var user_interface: CanvasLayer = $UserInterface
+
+func update_time_data(): #advances time by 1, while also updating the time in database
+	var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	
+	#date components
+	var current_year = Globals.TimeYear
+	var current_month = Globals.TimeMonth
+	var current_day = Globals.TimeDay
+	
+	#update date logic
+	current_day += 1
+	if current_day > days_in_month[current_month - 1]:
+		current_day = 1
+		current_month += 1
+		if current_month > 12:
+			current_month = 1
+			current_year += 1
+	
+	#days passed
+	Globals.DaysPassed += 1
+	# update global vars
+	Globals.TimeDay = current_day
+	Globals.TimeMonth = current_month
+	Globals.TimeYear = current_year
+	
+	#prints new date
+	DateLabel = str(Globals.TimeMonth) + "/" + str(Globals.TimeDay) + "/" + str(Globals.TimeYear)
+	user_interface.update_date_label(DateLabel)
+	print("date: " + DateLabel)
+	print("days passed: " + str(Globals.DaysPassed))
+	
+var DateLabel : String

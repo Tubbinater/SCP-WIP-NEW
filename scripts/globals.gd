@@ -7,3 +7,12 @@ extends Node
 
 # Upgrades
 var Large_fuel_upg: bool = false
+
+
+
+
+var TimeYear : int = 1950
+var TimeMonth : int = 1
+var TimeDay : int = 1
+
+var DaysPassed : int
