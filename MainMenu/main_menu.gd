@@ -44,7 +44,9 @@ func _on_options_button_pressed() -> void:
 func _on_credits_button_pressed() -> void:
 	CreditBox.set_visible(!CreditBox.is_visible())
 	
-	DataManager.copy_folder(DataManager.current_game_folder,DataManager.save_folder + "save1")
+	#save game testing -> WORKED
+	Global.refresh_saved_game_data() #don't need this for ACTUAL saved games, just to set global vars. TEMP.
+	DataManager.save_game() #temporary so one saved game can be checked / always up-to-date to test
 
 
 func _on_exit_game_button_pressed() -> void:

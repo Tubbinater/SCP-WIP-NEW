@@ -95,9 +95,16 @@ func create_new_options(): #creates a saved options file to remember. creates on
 		print("found option settings: " + str(options_))
 
 
-
 func save_game(): #only @export var will be saved / loaded in godot
 	var saved_game:SavedGame = SavedGame.new()
+	
+	#NOTE: insert saved variables here
+	saved_game.current_year = Global.TimeYear
+	saved_game.current_month = Global.TimeMonth
+	saved_game.current_day = Global.TimeDay
+	
+	saved_game.TimeSpeed = Global.TimeSpeed
+	
 	ResourceSaver.save(saved_game, current_game_folder + "saved_game.tres")
 	
 	copy_folder(current_game_folder, save_folder + "saved_game_name")

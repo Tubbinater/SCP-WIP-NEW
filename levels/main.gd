@@ -19,11 +19,13 @@ func _ready() -> void:
 	user_interface.update_date_label(str(Global.TimeMonth) + "/" + str(Global.TimeDay) + "/" + str(Global.TimeYear))
 	# sets label to correct time on launch
 
-
+#region ######################### TIMER / DATE LOGIC ###############################################
 func _on_timer_timeout() -> void:
-	update_time_data()
+	if Global.spacebar_toggle_pause == false:
+		update_time_data()
 
 @onready var user_interface: CanvasLayer = $UserInterface
+@onready var timer: Timer = $Timer
 
 func update_time_data(): #advances time by 1, while also updating the time in database
 	var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -56,3 +58,21 @@ func update_time_data(): #advances time by 1, while also updating the time in da
 	print("days passed: " + str(Global.DaysPassed))
 	
 var DateLabel : String
+
+func _input(event:InputEvent):
+	if event.is_action_pressed("Speed_x1_keyboard"):
+		user_interface._on_speed_1_button_pressed()
+		
+	if event.is_action_pressed("Speed_x2_keyboard"):
+		user_interface._on_speed_2_button_pressed()
+		
+	if event.is_action_pressed("Speed_x3_keyboard"):
+		user_interface._on_speed_3_button_pressed()
+		
+	if event.is_action_pressed("Speed_x4_keyboard"):
+		user_interface._on_speed_4_button_pressed()
+		
+	if event.is_action_pressed("spacebar_pause"):
+		user_interface._on_pause_button_pressed()
+
+#endregion ########################################################################################

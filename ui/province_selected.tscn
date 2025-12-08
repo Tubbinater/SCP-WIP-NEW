@@ -87,6 +87,7 @@ offset_right = 138.00798
 offset_bottom = 32.942
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 text = "Save Name"
 
 [node name="Label6" type="Label" parent="PanelContainer/GridContainer"]
@@ -133,10 +134,12 @@ empty_selection_clipboard_enabled = false
 
 [node name="ButtonSetPosition" type="Button" parent="PanelContainer/GridContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Set Position"
 
 [node name="ButtonSave" type="Button" parent="PanelContainer/GridContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Save"
 
 [connection signal="mouse_exited" from="PanelContainer/GridContainer/LabelProvinceType/ProvinceInput" to="." method="_on_country_input_2_mouse_exited"]

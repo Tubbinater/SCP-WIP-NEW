@@ -21,12 +21,14 @@ func refresh_saved_game_data(): #only fired when loading a new / saved game
 	else:
 		print("no saved data found")
 	
-	#NOTE: INPUT ALL VARIABLES AND SET THEM TO saved_game_data variables
+	#NOTE: INPUT ALL VARIABLES AND SET THEM TO saved_game_data variables (inversed in DataManager)
 	
 	TimeYear = saved_game_data.current_year
 	TimeMonth = saved_game_data.current_month
 	TimeDay = saved_game_data.current_day
-
+	
+	TimeSpeed = saved_game_data.TimeSpeed
+	
 # Upgrades
 var Large_fuel_upg: bool = false
 
@@ -38,3 +40,7 @@ var TimeMonth : int
 var TimeDay : int
 
 var DaysPassed : int
+
+var TimeSpeed : int = 0
+var TimeSpeedMEM : int = 1 #does not need to be saved, used for space toggle
+var spacebar_toggle_pause : bool = true # also no save, same as above
