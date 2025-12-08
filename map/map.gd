@@ -137,7 +137,7 @@ func _on_map_modes_map_mode_selected(mode: Variant) -> void:
 
 func create_country_labels() -> void:
 	var country_label_template: PackedScene = load("res://map/country_label_template.tscn")
-	for country: Country in Globals.tag_to_country.values():
+	for country: Country in Global.tag_to_country.values():
 		var country_label = country_label_template.instantiate()
 		country_label.initial_data(country)
 		$MeshInstance3D/SubViewport2/CountryLabels.add_child(country_label)

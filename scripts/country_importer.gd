@@ -40,4 +40,4 @@ func create_countries(country_name, color): #creates node under Countries. then 
 	country.country_name = country_name
 	country.color = color
 	add_child(country)
-	Globals.tag_to_country[country_name] = country #add into array under "country_name", refers to the created country node.
+	Global.tag_to_country[country_name] = country #add into array under "country_name", refers to the created country node.

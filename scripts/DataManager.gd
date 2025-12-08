@@ -3,7 +3,7 @@ class_name GameData
 
 # C:\Users\DON\AppData\Roaming\Godot\app_userdata\Open Grand Strategy - PCS
 
-var SCP := {} #dictionary of SCPs **MOVE TO GLOBALS
+var SCP := {} #dictionary of SCPs **MOVE TO GLOBAL
 
 func load_json(path: String) -> Dictionary: #load single JSON file, returns in dictionary format
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -35,7 +35,6 @@ func load_all_scps(folder_path: String = "res://C_Template_Data/SCPs/"):
 
 
 
-const persistent_data_folder = "res://C_Persistent_Data/"
 const template_data_folder = "res://C_Template_Data/"
 
 const current_game_folder = "user://SCP_Foundations_current_game_data/"
@@ -78,7 +77,7 @@ func copy_folder(from: String, to: String):
 	
 	path.list_dir_end()
 	
-const options_template = "res://C_saved_data/Options.json"
+const options_template = "res://C_persist_data/Options.json"
 const options_ = "user://Options.json"
 
 func create_new_options(): #creates a saved options file to remember. creates one from template if none is there.
@@ -94,3 +93,11 @@ func create_new_options(): #creates a saved options file to remember. creates on
 			from.close()
 	else:
 		print("found option settings: " + str(options_))
+
+
+
+func save_game(): #only @export var will be saved / loaded in godot
+	var saved_game:SavedGame = SavedGame.new()
+	ResourceSaver.save(saved_game, current_game_folder + "saved_game.tres")
+	
+	copy_folder(current_game_folder, save_folder + "saved_game_name")

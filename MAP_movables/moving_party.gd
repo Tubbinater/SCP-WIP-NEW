@@ -9,7 +9,7 @@ var target_position: Vector3 = Vector3(271,1,33)
 
 func _physics_process(_delta: float) -> void:
 	
-	if !Globals.Large_fuel_upg: #add future upgrade where units ignore terrain / water obstacles
+	if !Global.Large_fuel_upg: #add future upgrade where units ignore terrain / water obstacles
 		nav_agent.target_position = target_position
 		
 		var next_path_position := nav_agent.get_next_path_position()

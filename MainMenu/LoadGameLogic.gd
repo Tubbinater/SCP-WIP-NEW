@@ -21,11 +21,10 @@ func refresh_list(): #creates a list of buttons per save file
 		
 		while file_name != "":
 			if path.current_is_dir(): #filters only folders and only leaves everything else out
-				print("Found file: " + file_name)
 				
 				#Create a button for the save file
 				var button = Button.new()
-				button.text = file_name  # Set the button text to the file name
+				button.text = file_name # Set the button text to the file name
 				@warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")
 				button.set_focus_mode(0)
 				# store the full path in metadata for easy access (can delete if not worth it)
@@ -46,10 +45,11 @@ func refresh_list(): #creates a list of buttons per save file
 # Signal handler for when a save button is pressed
 func _on_load_save_button_pressed(button: Button) -> void:
 	# Retrieve the file path from the button's metadata
-	var file_path = button.get_meta("file_path").split(".", true, 1)
-	print("Save file selected: ", file_path[0])
+	var file_path = button.get_meta("file_path")
+	print("Save file selected: ", file_path)
 	
 	#load the selected save file and run game
-	DataManager.copy_folder(DataManager.save_folder + file_path[0] , DataManager.current_game_folder)
+	DataManager.copy_folder(DataManager.save_folder + file_path , DataManager.current_game_folder)
+	Global.refresh_saved_game_data()
 	
 	get_tree().change_scene_to_file("res://levels/main.tscn")

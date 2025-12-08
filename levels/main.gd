@@ -15,13 +15,13 @@ func _on_states_reparent_provinces(state) -> void: #move province node to state 
 		node_to_move.reparent(state)
 
 
+func _ready() -> void:
+	user_interface.update_date_label(str(Global.TimeMonth) + "/" + str(Global.TimeDay) + "/" + str(Global.TimeYear))
+	# sets label to correct time on launch
 
-func grab_date() -> void:
-	pass
 
 func _on_timer_timeout() -> void:
 	update_time_data()
-
 
 @onready var user_interface: CanvasLayer = $UserInterface
 
@@ -29,9 +29,9 @@ func update_time_data(): #advances time by 1, while also updating the time in da
 	var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 	
 	#date components
-	var current_year = Globals.TimeYear
-	var current_month = Globals.TimeMonth
-	var current_day = Globals.TimeDay
+	var current_year = Global.TimeYear
+	var current_month = Global.TimeMonth
+	var current_day = Global.TimeDay
 	
 	#update date logic
 	current_day += 1
@@ -43,16 +43,16 @@ func update_time_data(): #advances time by 1, while also updating the time in da
 			current_year += 1
 	
 	#days passed
-	Globals.DaysPassed += 1
+	Global.DaysPassed += 1
 	# update global vars
-	Globals.TimeDay = current_day
-	Globals.TimeMonth = current_month
-	Globals.TimeYear = current_year
+	Global.TimeDay = current_day
+	Global.TimeMonth = current_month
+	Global.TimeYear = current_year
 	
 	#prints new date
-	DateLabel = str(Globals.TimeMonth) + "/" + str(Globals.TimeDay) + "/" + str(Globals.TimeYear)
+	DateLabel = str(Global.TimeMonth) + "/" + str(Global.TimeDay) + "/" + str(Global.TimeYear)
 	user_interface.update_date_label(DateLabel)
 	print("date: " + DateLabel)
-	print("days passed: " + str(Globals.DaysPassed))
+	print("days passed: " + str(Global.DaysPassed))
 	
 var DateLabel : String

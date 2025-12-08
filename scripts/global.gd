@@ -1,0 +1,40 @@
+extends Node
+
+
+@export var saved_game_data : SavedGame = load(DataManager.template_data_folder + "saved_game.tres") as SavedGame
+
+#stores all country nodes into an array to be called in script anywhere. NOTE: only calls node, not any country data not within node data.
+@onready var tag_to_country : Dictionary
+
+
+
+func _ready() -> void:
+	if saved_game_data:
+		print("saved data is readable")
+	else:
+		print("no saved data found")
+
+func refresh_saved_game_data(): #only fired when loading a new / saved game
+	saved_game_data = load(DataManager.current_game_folder + "saved_game.tres") as SavedGame
+	if saved_game_data:
+		print("saved data is readable")
+	else:
+		print("no saved data found")
+	
+	#NOTE: INPUT ALL VARIABLES AND SET THEM TO saved_game_data variables
+	
+	TimeYear = saved_game_data.current_year
+	TimeMonth = saved_game_data.current_month
+	TimeDay = saved_game_data.current_day
+
+# Upgrades
+var Large_fuel_upg: bool = false
+
+
+
+
+var TimeYear : int
+var TimeMonth : int
+var TimeDay : int
+
+var DaysPassed : int

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SavedGame" load_steps=2 format=3 uid="uid://dxc8d42lagaje"]
+
+[ext_resource type="Script" uid="uid://bn6eysabl8b5n" path="res://scripts/saved_game.gd" id="1_ac3dc"]
+
+[resource]
+script = ExtResource("1_ac3dc")
+current_day = 1
+current_month = 1
+current_year = 1950
