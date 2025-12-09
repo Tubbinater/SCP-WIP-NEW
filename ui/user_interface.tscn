@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://ycjgmfvkvx56"]
+[gd_scene load_steps=14 format=3 uid="uid://ycjgmfvkvx56"]
 
 [ext_resource type="Script" uid="uid://b1np4t2pybigo" path="res://ui/user_interface.gd" id="1_mm06q"]
 [ext_resource type="Texture2D" uid="uid://g3wwmgbpk50k" path="res://images/UI_Textures/sheet_white1x.png" id="2_ue2kl"]
 [ext_resource type="Texture2D" uid="uid://be4d84mi8dd37" path="res://images/UI_Textures/arrow button 3 and 4.png" id="3_r3gyj"]
+[ext_resource type="Theme" uid="uid://b5bdvt2y0e434" path="res://ui/themes/tooltip_theme.tres" id="4_5skvp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj86k"]
 bg_color = Color(0.29803923, 0.3254902, 0.34901962, 1)
-border_width_bottom = 3
+border_width_bottom = 2
 border_color = Color(0.52156866, 0.59607846, 0.6509804, 1)
 anti_aliasing = false
 
@@ -47,50 +48,35 @@ region = Rect2(351.513, 415.188, 83.777, 43.242)
 script = ExtResource("1_mm06q")
 
 [node name="Top_Panel" type="Panel" parent="."]
-offset_right = 1152.0
-offset_bottom = 30.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme = SubResource("Theme_mm06q")
 
-[node name="DateLabel" type="Label" parent="Top_Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 469.0
-offset_top = 1.0
-offset_right = 569.0
-offset_bottom = 26.125
-grow_horizontal = 2
-mouse_filter = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 18
-text = "00/00/0000"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Top_Panel"]
+[node name="TimeButtonContainer" type="HBoxContainer" parent="Top_Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -295.0
+offset_left = -240.0
 offset_top = 1.0
 offset_right = -115.0
-offset_bottom = 26.0
+offset_bottom = 16.0
 grow_horizontal = 0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 alignment = 2
 
-[node name="PauseButton" type="Button" parent="Top_Panel/HBoxContainer"]
+[node name="PauseButton" type="Button" parent="Top_Panel/TimeButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme = SubResource("Theme_ue2kl")
 toggle_mode = true
 
-[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/PauseButton"]
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/TimeButtonContainer/PauseButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,14 +86,14 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_r3gyj")
 expand_mode = 1
 
-[node name="Speed1Button" type="Button" parent="Top_Panel/HBoxContainer"]
+[node name="Speed1Button" type="Button" parent="Top_Panel/TimeButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme = SubResource("Theme_ue2kl")
 toggle_mode = true
 
-[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed1Button"]
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/TimeButtonContainer/Speed1Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,14 +103,14 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_5skvp")
 expand_mode = 1
 
-[node name="Speed2Button" type="Button" parent="Top_Panel/HBoxContainer"]
+[node name="Speed2Button" type="Button" parent="Top_Panel/TimeButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme = SubResource("Theme_ue2kl")
 toggle_mode = true
 
-[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed2Button"]
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/TimeButtonContainer/Speed2Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,14 +120,14 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_j1g8x")
 expand_mode = 1
 
-[node name="Speed3Button" type="Button" parent="Top_Panel/HBoxContainer"]
+[node name="Speed3Button" type="Button" parent="Top_Panel/TimeButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme = SubResource("Theme_ue2kl")
 toggle_mode = true
 
-[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed3Button"]
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/TimeButtonContainer/Speed3Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,14 +137,14 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_wy7nh")
 expand_mode = 1
 
-[node name="Speed4Button" type="Button" parent="Top_Panel/HBoxContainer"]
+[node name="Speed4Button" type="Button" parent="Top_Panel/TimeButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme = SubResource("Theme_ue2kl")
 toggle_mode = true
 
-[node name="TextureRect" type="TextureRect" parent="Top_Panel/HBoxContainer/Speed4Button"]
+[node name="TextureRect" type="TextureRect" parent="Top_Panel/TimeButtonContainer/Speed4Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -168,8 +154,110 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_bmx2r")
 expand_mode = 1
 
-[connection signal="pressed" from="Top_Panel/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
-[connection signal="pressed" from="Top_Panel/HBoxContainer/Speed1Button" to="." method="_on_speed_1_button_pressed"]
-[connection signal="pressed" from="Top_Panel/HBoxContainer/Speed2Button" to="." method="_on_speed_2_button_pressed"]
-[connection signal="pressed" from="Top_Panel/HBoxContainer/Speed3Button" to="." method="_on_speed_3_button_pressed"]
-[connection signal="pressed" from="Top_Panel/HBoxContainer/Speed4Button" to="." method="_on_speed_4_button_pressed"]
+[node name="DateLabel" type="Label" parent="Top_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 17.75
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "00/00/0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="Top_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -652.0
+offset_top = 1.0
+offset_right = -552.0
+offset_bottom = 17.75
+grow_horizontal = 0
+theme = ExtResource("4_5skvp")
+theme_override_colors/font_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_font_sizes/font_size = 12
+text = "$0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VeilIntegrityLabel" type="Label" parent="Top_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -852.0
+offset_top = 1.0
+offset_right = -716.0
+offset_bottom = 17.75
+grow_horizontal = 0
+tooltip_text = "Veil Integrity is how much the
+SCP Foundation is hidden
+from the public.
+Try to keep this as high as
+possible."
+mouse_filter = 1
+theme = ExtResource("4_5skvp")
+theme_override_colors/font_color = Color(0.003921569, 0.015686275, 0.99215686, 1)
+theme_override_font_sizes/font_size = 12
+text = "Veil Integrity: -1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResearchPointsLabel" type="Label" parent="Top_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1027.0
+offset_top = 1.0
+offset_right = -927.0
+offset_bottom = 17.75
+grow_horizontal = 0
+tooltip_text = "Research Points allow
+you to assign new 
+research development."
+mouse_filter = 1
+theme = ExtResource("4_5skvp")
+theme_override_colors/font_color = Color(0, 0.5921569, 0.8627451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 12
+text = "Research Points: 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ThreatLevelLabel" type="Label" parent="Top_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -477.0
+offset_top = 1.0
+offset_right = -348.0
+offset_bottom = 17.75
+grow_horizontal = 0
+tooltip_text = "Risk is the amount of global danger
+imposed on the SCP Foundation and
+more importantly, your life.
+Try to keep this as low as possible."
+mouse_filter = 1
+theme = ExtResource("4_5skvp")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Threat Level: -1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Top_Panel/TimeButtonContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Top_Panel/TimeButtonContainer/Speed1Button" to="." method="_on_speed_1_button_pressed"]
+[connection signal="pressed" from="Top_Panel/TimeButtonContainer/Speed2Button" to="." method="_on_speed_2_button_pressed"]
+[connection signal="pressed" from="Top_Panel/TimeButtonContainer/Speed3Button" to="." method="_on_speed_3_button_pressed"]
+[connection signal="pressed" from="Top_Panel/TimeButtonContainer/Speed4Button" to="." method="_on_speed_4_button_pressed"]

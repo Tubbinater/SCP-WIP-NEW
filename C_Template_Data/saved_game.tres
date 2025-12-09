@@ -4,6 +4,3 @@
 
 [resource]
 script = ExtResource("1_ac3dc")
-current_day = 1
-current_month = 1
-current_year = 1950

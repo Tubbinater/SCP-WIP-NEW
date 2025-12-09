@@ -6,7 +6,7 @@ extends Node
 #stores all country nodes into an array to be called in script anywhere. NOTE: only calls node, not any country data not within node data.
 @onready var tag_to_country : Dictionary
 
-
+var Large_fuel_upg
 
 func _ready() -> void:
 	if saved_game_data:
@@ -29,10 +29,12 @@ func refresh_saved_game_data(): #only fired when loading a new / saved game
 	
 	TimeSpeed = saved_game_data.TimeSpeed
 	
-# Upgrades
-var Large_fuel_upg: bool = false
-
-
+	
+	
+	Money = saved_game_data.Money
+	VeilIntegrity = saved_game_data.VeilIntegrity
+	ResearchCredits = saved_game_data.ResearchCredits
+	ThreatLevel = saved_game_data.ThreatLevel
 
 
 var TimeYear : int
@@ -44,3 +46,9 @@ var DaysPassed : int
 var TimeSpeed : int = 0
 var TimeSpeedMEM : int = 1 #does not need to be saved, used for space toggle
 var spacebar_toggle_pause : bool = true # also no save, same as above
+
+
+var Money : int = 0
+var VeilIntegrity : int = 0
+var ResearchCredits : int = 0
+var ThreatLevel : int = 0

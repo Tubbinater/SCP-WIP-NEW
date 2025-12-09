@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b5bdvt2y0e434"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_716vh"]
+content_margin_left = 4.0
+bg_color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5137255, 0.63529414, 0.69803923, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[resource]
+default_font_size = 8
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_716vh")
